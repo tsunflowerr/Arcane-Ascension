@@ -1,8 +1,36 @@
-﻿  main.cpp
-C:\GameSDL2\CommonFunc.h(44,2): warning C4091: 'typedef ': ignored on left of 'Input' when no variable is declared
+﻿  MainObject.cpp
+C:\GameSDL2\CommonFunc.h(47,2): warning C4091: 'typedef ': ignored on left of 'Input' when no variable is declared
+  (compiling source file 'MainObject.cpp')
+  
+C:\GameSDL2\CommonFunc.h(59,2): warning C4091: 'typedef ': ignored on left of 'Map' when no variable is declared
+  (compiling source file 'MainObject.cpp')
+  
+C:\GameSDL2\MainObject.cpp(113,25): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\GameSDL2\MainObject.cpp(114,44): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\GameSDL2\MainObject.cpp(116,16): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\GameSDL2\MainObject.cpp(117,33): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\GameSDL2\MainObject.cpp(136,18): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\GameSDL2\MainObject.cpp(158,24): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\GameSDL2\MainObject.cpp(166,16): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\GameSDL2\MainObject.cpp(167,28): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\GameSDL2\MainObject.cpp(169,25): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\GameSDL2\MainObject.cpp(170,45): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\GameSDL2\MainObject.cpp(188,18): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\GameSDL2\MainObject.cpp(214,24): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\GameSDL2\MainObject.cpp(231,43): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\GameSDL2\MainObject.cpp(259,20): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\GameSDL2\MainObject.cpp(260,20): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\GameSDL2\MainObject.cpp(328,46): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
+C:\GameSDL2\MainObject.cpp(333,66): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
+C:\GameSDL2\MainObject.cpp(346,20): warning C4018: '<': signed/unsigned mismatch
+C:\GameSDL2\MainObject.cpp(390,16): warning C4305: '+=': truncation from 'double' to 'float'
+C:\GameSDL2\MainObject.cpp(443,29): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\GameSDL2\MainObject.cpp(453,29): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  main.cpp
+C:\GameSDL2\CommonFunc.h(47,2): warning C4091: 'typedef ': ignored on left of 'Input' when no variable is declared
   (compiling source file 'main.cpp')
   
-C:\GameSDL2\CommonFunc.h(56,2): warning C4091: 'typedef ': ignored on left of 'Map' when no variable is declared
+C:\GameSDL2\CommonFunc.h(59,2): warning C4091: 'typedef ': ignored on left of 'Map' when no variable is declared
   (compiling source file 'main.cpp')
   
 C:\GameSDL2\Geomeric.h(17,2): warning C4091: 'typedef ': ignored on left of 'GeometricFormat' when no variable is declared
@@ -37,4 +65,5 @@ C:\GameSDL2\main.cpp(319,19): warning C4244: 'initializing': conversion from 'do
 C:\GameSDL2\main.cpp(367,52): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
 C:\GameSDL2\main.cpp(374,53): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
 C:\GameSDL2\main.cpp(398,20): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
   GameSDL2.vcxproj -> C:\GameSDL2\Debug\GameSDL2.exe

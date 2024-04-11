@@ -13,6 +13,7 @@
 static SDL_Window* g_window = NULL; 
 static SDL_Renderer* g_screen = NULL; 
 static SDL_Event g_event; 
+static SDL_Surface* g_image_menu = NULL;
 
 const int SCREEN_WIDTH = 1280; 
 const int SCREEN_HEIGHT = 640; 
@@ -25,6 +26,8 @@ const int COLOR_KEY_B = 180;
 const int RENDER_DRAW_COLOR = 255; 
 
 const int FPS = 70;
+
+ 
 
 #define BLANK_TILE 0 
 #define TILE_SIZE 64 
@@ -58,6 +61,8 @@ typedef struct Map
 namespace SDLCommonFunc
 {
 	bool CheckCollision(const SDL_Rect& object1, const SDL_Rect& object2); 
+	/*int ShowMenu(SDL_Surface* des, TTF_Font* font); 
+	SDL_Surface* LoadImagew(std::string file_path) ;*/
 }
 
 #endif

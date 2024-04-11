@@ -86,3 +86,23 @@ bool SDLCommonFunc::CheckCollision(const SDL_Rect& object1, const SDL_Rect& obje
 
     return false;
 }
+//
+//SDL_Surface* SDLCommonFunc::LoadImagew(std::string file_path)
+//{
+//    SDL_Surface* load_image = NULL; 
+//    SDL_Surface* optimize_imgae = NULL;
+//    load_image = IMG_Load(file_path.c_str()); 
+//    if (load_image != NULL)
+//    {
+//        optimize_imgae = SDL_Displayfor
+//    }
+//}
+////int SDLCommonFunc::ShowMenu(SDL_Surface* des, TTF_Font* font)
+////{
+////    g_image_menu = LoadImage()
+////    if (g_image_menu == NULL)
+////    {
+////        return 1; 
+////    }
+////}
+
