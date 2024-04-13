@@ -6,7 +6,7 @@
 #include "BaseObject.h"
 #include "CommonFunc.h"
 
-class BulletObject : public BaseObject
+class BulletObject : public BaseObject 
 {
 public : 
 	BulletObject(); 

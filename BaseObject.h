@@ -4,8 +4,7 @@
 
 #include "CommonFunc.h"
 
-class BaseObject
-{
+class BaseObject{
 public:
 	BaseObject();
 	~BaseObject(); 
@@ -20,11 +19,12 @@ public:
 	virtual bool LoadImg(std::string path, SDL_Renderer* screen); 
 	void Render(SDL_Renderer* des, const SDL_Rect* clip = NULL); 
 	void Free(); 
+	void Show(SDL_Surface* des); 
 
 protected:
 	SDL_Texture* p_object_; 
 	SDL_Rect rect_; 
-
+	SDL_Surface* p_object; 
 
 };
 

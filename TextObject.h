@@ -3,8 +3,9 @@
 #define TEXT_OBJECT_H 
 
 #include "CommonFunc.h" 
+#include "BaseObject.h"
 
-class TextObject
+class TextObject : public BaseObject
 {
 public:
 	TextObject();
@@ -28,7 +29,6 @@ public:
 
 	int GetWidth() const { return width_; };
 	int GetHeight() const { return height_; }
-
 	void SetText(const std::string& text) { str_val_ = text; }
 	std::string GetText() const { return str_val_; }
 private:
@@ -37,6 +37,7 @@ private:
 	SDL_Texture* texture_;
 	int width_;
 	int height_;
+	SDL_Rect rect_;
 
 };
 

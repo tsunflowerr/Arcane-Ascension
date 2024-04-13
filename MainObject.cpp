@@ -1,4 +1,5 @@
 #include "MainObject.h"
+#include <iostream>
 
 
 MainObject::MainObject()
@@ -21,6 +22,7 @@ MainObject::MainObject()
 	map_y_ = 0; 
 	come_back_time_ = 0; 
 	money_count = 0;
+	luckky_box = 2; 
 }
 
 MainObject::~MainObject()
@@ -103,10 +105,9 @@ void MainObject::CheckToMap(Map& map_data)
 {
 	int x1 = 0;
 	int x2 = 0;
-
-
 	int y1 = 0;
 	int y2 = 0;
+	
 
 	int height_min = height_frame_ < TILE_SIZE ? height_frame_ : TILE_SIZE;
 
@@ -129,6 +130,24 @@ void MainObject::CheckToMap(Map& map_data)
 				map_data.tile[y2][x2] = 0;
 				IncreaseMoney();
 			}
+			 
+			else if ((val1 == LUCKKY_BOX) || (val2 == LUCKKY_BOX))
+			{
+				if (luckky_box != 0)
+				{
+					luckky_box--;
+					x_pos_ = x2 * TILE_SIZE;
+					x_pos_ -= width_frame_ + 1;
+					x_val_ = 0;
+					
+				}
+				else 
+				{
+					map_data.tile[y1][x2] = 0; 
+					map_data.tile[y2][x2] = 0; 
+				}
+				std::cout << luckky_box; 
+			}
 			else
 			{
 				if (val1 != BLANK_TILE || val2 != BLANK_TILE)
@@ -150,6 +169,21 @@ void MainObject::CheckToMap(Map& map_data)
 				map_data.tile[y1][x1] = 0;
 				map_data.tile[y2][x1] = 0;
 				IncreaseMoney();
+			}
+			else if ((val1 == LUCKKY_BOX) || (val2 == LUCKKY_BOX))
+			{
+				if (luckky_box != 0)
+				{
+					luckky_box--; 
+					x_pos_ = (x1 + 1) * TILE_SIZE;
+					x_val_ = 0;
+				}
+				else  
+				{
+					map_data.tile[y1][x1] = 0;
+					map_data.tile[y2][x1] = 0;
+				}
+				std::cout << luckky_box; 
 			}
 			else
 			{
@@ -181,6 +215,27 @@ void MainObject::CheckToMap(Map& map_data)
 				map_data.tile[y2][x2] = 0;
 				IncreaseMoney(); 
 			}
+			else if ((val1 == LUCKKY_BOX) || (val2 == LUCKKY_BOX))
+			{
+				if (luckky_box != 0)
+				{
+					luckky_box--; 
+					y_pos_ = y2 * TILE_SIZE;
+					y_pos_ -= (height_frame_ + 1);
+					y_val_ = 0;
+					on_ground_ = true;
+					if (status_ == WALK_NONE)
+					{
+						status_ = WALK_NONE;
+					}
+				}
+				if (luckky_box == 0)
+				{
+					map_data.tile[y2][x1] = 0;
+					map_data.tile[y2][x2] = 0;
+				}
+				std::cout << luckky_box; 
+			}
 			else
 			{
 				if (val1 != BLANK_TILE || val2 != BLANK_TILE)
@@ -206,6 +261,20 @@ void MainObject::CheckToMap(Map& map_data)
 				map_data.tile[y1][x1] = 0;
 				map_data.tile[y1][x2] = 0;
 				IncreaseMoney(); 
+			}
+			else if ((val1 == LUCKKY_BOX) || (val2 == LUCKKY_BOX))
+			{
+				if (luckky_box != 0){
+					luckky_box--; 
+					y_pos_ = (y1 + 1) * TILE_SIZE;
+					y_val_ = 0;
+				}
+				else 
+				{
+					map_data.tile[y1][x1] = 0;
+					map_data.tile[y1][x2] = 0;
+				}
+				std::cout << luckky_box; 
 			}
 			else
 			{

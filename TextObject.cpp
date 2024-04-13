@@ -75,3 +75,4 @@ void TextObject::RenderText(SDL_Renderer* screen, int xp, int yp, SDL_Rect* clip
 
 	SDL_RenderCopyEx(screen, texture_, clip, &renderQuad, angle, center, flip);
 }
+

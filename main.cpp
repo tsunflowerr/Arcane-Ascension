@@ -11,6 +11,7 @@
 #include "BossObject.h"
 
 BaseObject g_background; 
+BaseObject m_background; 
 TTF_Font* font_time = NULL; 
 
 bool InitData()
@@ -68,11 +69,20 @@ bool LoadBackground()
 		return false; 
 	return true; 
 }
+bool LoadmBackground()
+{
+	bool ret = m_background.LoadImg("img//summer.png", g_screen);
+
+	if (ret == false)
+		return false;
+	return true;
+}
+
 
 void close()
 {
 	g_background.Free(); 
-
+	m_background.Free();
 	SDL_DestroyRenderer(g_screen);
 	g_screen = NULL; 
 
@@ -82,6 +92,7 @@ void close()
 	IMG_Quit();
 	SDL_Quit();
 } 
+
 
 std::vector<ThreatsObject*> MakeThreatList()
 {
@@ -98,6 +109,7 @@ std::vector<ThreatsObject*> MakeThreatList()
 			p_threat->set_type_move(ThreatsObject::MOVE_IN_SPACE_THREAT); 
 			p_threat->set_x_pos(500 + i * 500); 
 			p_threat->set_y_pos(200);
+
 
 			int pos1 = p_threat->get_x_pos() - 60; 
 			int pos2 = p_threat->get_x_pos() + 60; 
@@ -139,6 +151,8 @@ int main(int argc, char* argv[])
 	if (InitData() == false)
 		return -1;
 	if (LoadBackground() == false)
+		return -1;
+	if (LoadmBackground() == false)
 		return -1;
 
 	GameMap game_map;
@@ -186,22 +200,97 @@ int main(int argc, char* argv[])
 	TextObject money_game; 
 	money_game.SetColor(TextObject::BLACK_TEXT); 
 
+	TextObject start_button; 
+	TextObject quit_button; 
+	TextObject guide_button;
+
+
+
 	bool is_quit = false;
+	bool start = true; 
+
+	
+
+		while (start && !is_quit) {
+			while (SDL_PollEvent(&g_event) != 0)
+			{
+				if (g_event.type == SDL_QUIT)
+				{
+					start = false;
+					is_quit = true;
+				}
+				p_player.HandelInputAction(g_event, g_screen);
+			}
+
+			//SDL_SetRenderDrawColor(g_screen, 210, 210, 210, 210);
+			//SDL_RenderClear(g_screen);
+
+			m_background.Render(g_screen, NULL);
+
+			int mouseX, mouseY;
+			SDL_GetMouseState(&mouseX, &mouseY);
+
+			start_button.SetText("START");
+			guide_button.SetText("GUIDE");
+			quit_button.SetText("QUIT");
+
+			start_button.LoadFromRenderText(font_time, g_screen);
+			if (mouseX >= 1280 / 2 - 40 && mouseX <= 1280 / 2 - 40 + 90 && mouseY >= 480 / 2 - 15 && mouseY <= 480 / 2 + 37 - 15) {
+				start_button.SetColor(TextObject::BLACK_TEXT);
+				if (g_event.type == SDL_MOUSEBUTTONDOWN) {
+					if (g_event.button.button = SDL_BUTTON_RIGHT)
+					{
+						start = false;
+					}
+				}
+			}
+			else {
+				start_button.SetColor(TextObject::RED_TEXT);
+			}
+
+			start_button.RenderText(g_screen, 1280 / 2 - 40, 480 / 2);
+
+			guide_button.LoadFromRenderText(font_time, g_screen);
+			if (mouseX >= 1280 / 2 - 40 && mouseX <= 1280 / 2 - 40 + 90 && mouseY >= 480 / 2 - 15 + 50 && mouseY <= 480 / 2 + 37 - 15 + 50) {
+				guide_button.SetColor(TextObject::BLACK_TEXT);
+
+			}
+			else {
+				guide_button.SetColor(TextObject::RED_TEXT);
+			}
+			guide_button.RenderText(g_screen, 1280 / 2 - 40 + 2, 480 / 2 + 56);
+
+			quit_button.LoadFromRenderText(font_time, g_screen);
+			if (mouseX >= 1280 / 2 - 40 && mouseX <= 1280 / 2 - 40 + 90 && mouseY >= 480 / 2 - 15 + 120 && mouseY <= 480 / 2 + 37 - 15 + 120) {
+				quit_button.SetColor(TextObject::BLACK_TEXT);
+				if (g_event.type == SDL_MOUSEBUTTONDOWN) {
+					if (g_event.button.button = SDL_BUTTON_RIGHT)
+					{
+						is_quit = true;
+					}
+				}
+			}
+			else {
+				quit_button.SetColor(TextObject::RED_TEXT);
+			}
+			quit_button.RenderText(g_screen, 1280 / 2 - 40 + 5, 480 / 2 + 114);
+
+			SDL_RenderPresent(g_screen);
+			SDL_Delay(10);
+
+		}
+	
 	while (!is_quit)
 	{
-		fps_timer.start();
 		while (SDL_PollEvent(&g_event) != 0)
 		{
 			if (g_event.type == SDL_QUIT)
 			{
+				start = false;
 				is_quit = true;
 			}
-
 			p_player.HandelInputAction(g_event, g_screen);
 		}
-
-		SDL_SetRenderDrawColor(g_screen, RENDER_DRAW_COLOR, RENDER_DRAW_COLOR, RENDER_DRAW_COLOR, RENDER_DRAW_COLOR);
-		SDL_RenderClear(g_screen);
 
 		g_background.Render(g_screen, NULL);
 		game_map.DrawMap(g_screen);
@@ -256,6 +345,7 @@ int main(int argc, char* argv[])
 						}
 					}
 				}
+
 				SDL_Rect rect_threat = p_threat->GetRectFrame();
 				bool bCol2 = SDLCommonFunc::CheckCollision(rect_player, rect_threat);
 				if ( bCol2 || bCol1  )

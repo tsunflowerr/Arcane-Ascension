@@ -53,6 +53,7 @@ public :
 private:
 
 	int money_count; 
+	int luckky_box; 
 	std::vector<BulletObject*> p_bullet_list_; 
 	float x_val_; 
 	float y_val_; 

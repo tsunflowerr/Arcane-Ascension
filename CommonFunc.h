@@ -9,6 +9,8 @@
 #include <SDL_image.h>
 #include <SDL_mixer.h>
 #include <SDL_ttf.h>
+#include "BaseObject.h"
+
 
 static SDL_Window* g_window = NULL; 
 static SDL_Renderer* g_screen = NULL; 
@@ -37,6 +39,8 @@ const int FPS = 70;
 
 #define STATE_MONEY 4 
 
+#define LUCKKY_BOX 7
+
 typedef struct Input
 {
 	int left_; 
@@ -61,8 +65,6 @@ typedef struct Map
 namespace SDLCommonFunc
 {
 	bool CheckCollision(const SDL_Rect& object1, const SDL_Rect& object2); 
-	/*int ShowMenu(SDL_Surface* des, TTF_Font* font); 
-	SDL_Surface* LoadImagew(std::string file_path) ;*/
 }
 
 #endif
