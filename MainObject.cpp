@@ -343,6 +343,7 @@ void MainObject::HandelInputAction(SDL_Event events, SDL_Renderer* screen)
 		switch (events.key.keysym.sym)
 		{
 		case SDLK_RIGHT:
+		case SDLK_d:
 		{
 			status_ = WALK_RIGHT;
 			input_type_.right_ = 1; 
@@ -351,6 +352,7 @@ void MainObject::HandelInputAction(SDL_Event events, SDL_Renderer* screen)
 		}
 		break; 
 		case SDLK_LEFT:
+		case SDLK_a:
 		{
 			status_ = WALK_LEFT; 
 			input_type_.left_ = 1; 
@@ -358,6 +360,11 @@ void MainObject::HandelInputAction(SDL_Event events, SDL_Renderer* screen)
 			UpdateImagePlayer(screen);
 		}
 		break;
+		case SDLK_w : 
+		{
+			input_type_.jump_ = 1; 
+		}
+		break; 
 		}
 	}
 	else if (events.type == SDL_KEYUP)
@@ -365,27 +372,38 @@ void MainObject::HandelInputAction(SDL_Event events, SDL_Renderer* screen)
 		switch (events.key.keysym.sym)
 		{
 		case SDLK_RIGHT:
+		case SDLK_d :
 		{
 			status_ = WALK_RIGHT;
 			input_type_.right_ = 0;
+			UpdateImagePlayer(screen); 
 		}
 		break;
 		case SDLK_LEFT:
+		case SDLK_a : 
 		{
 			status_ = WALK_LEFT;
 			input_type_.left_ = 0;
+			UpdateImagePlayer(screen); 
 		}
 		break;
+		case SDLK_j : 
+		{
+			status_ = FIGHT; 
+			UpdateImagePlayer(screen); 
+		}
+		break; 
 		}
 	}
 
-	if (events.type == SDL_MOUSEBUTTONDOWN)
+	
+	if (events.type == SDL_MOUSEBUTTONDOWN || events.type == SDL_KEYDOWN  )
 	{
 		if (events.button.button == SDL_BUTTON_RIGHT)
 		{
 			input_type_.jump_ = 1;
 		}
-		else if (events.button.button == SDL_BUTTON_LEFT)
+		else if (events.button.button == SDL_BUTTON_LEFT || events.key.keysym.sym == SDLK_SPACE   )
 		{
 			BulletObject* p_bullet = new BulletObject(); 
 			p_bullet->set_bullet_type(BulletObject::SEPHERE_BULLET);
@@ -409,7 +427,6 @@ void MainObject::HandelInputAction(SDL_Event events, SDL_Renderer* screen)
 		}
 	}
 }
-
 void MainObject::HandleBullet(SDL_Renderer* des)
 {
 	for (int i = 0; i < p_bullet_list_.size(); i++)
@@ -539,9 +556,21 @@ void MainObject::UpdateImagePlayer(SDL_Renderer* des)
 {
 	if (on_ground_ == true)
 	{
-		if (status_ == WALK_LEFT)
+		bool isWalking = (input_type_.left_ == 0 && input_type_.right_ == 0);
+		if (isWalking && status_ == WALK_LEFT) {
+			LoadImg("img//Idle_left.png", des); 
+		}
+		else if (isWalking && status_ == WALK_RIGHT)
+		{
+			LoadImg("img//Idle_right.png", des); 
+		}
+		else if (status_ == WALK_LEFT)
 		{
 			LoadImg("img//player_left.png",des); 
+		}
+		else if (status_ = FIGHT)
+		{
+			LoadImg("img//Attack1.png", des); 
 		}
 		else
 		{
@@ -552,10 +581,10 @@ void MainObject::UpdateImagePlayer(SDL_Renderer* des)
 	{
 		if (status_ == WALK_LEFT)
 		{
-			LoadImg("img//jum_left.png", des); 
+			LoadImg("img//jump_left.png", des); 
 		}
 		else {
-			LoadImg("img//jum_right.png", des); 
+			LoadImg("img//jump_right.png", des); 
 		}
 	}
 }

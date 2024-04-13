@@ -98,7 +98,7 @@ std::vector<ThreatsObject*> MakeThreatList()
 {
 	std::vector<ThreatsObject*> list_threats; 
 
-	ThreatsObject* dynamic_threats = new ThreatsObject[20];
+	/*ThreatsObject* dynamic_threats = new ThreatsObject[20];
 	for (int i = 0; i < 20; i++)
 	{
 		ThreatsObject* p_threat = (dynamic_threats + i); 
@@ -118,7 +118,7 @@ std::vector<ThreatsObject*> MakeThreatList()
 
 			list_threats.push_back(p_threat); 
 		}
-	}
+	}*/
 
 
 	ThreatsObject* threats_objs = new ThreatsObject[20]; 
@@ -162,6 +162,9 @@ int main(int argc, char* argv[])
 	MainObject p_player;
 	p_player.LoadImg("img//player_right.png", g_screen);
 	p_player.set_clips();
+	MainObject hit_player; 
+	hit_player.LoadImg("img//Hit.png", g_screen); 
+	hit_player.set_clips();
 
 
 	PlayerPower player_power; 
@@ -339,6 +342,8 @@ int main(int argc, char* argv[])
 						bCol1 = SDLCommonFunc::CheckCollision(pt_bullet->GetRect(), rect_player);
 						if (bCol1)
 						{
+							hit_player.Show(g_screen);
+							SDL_Delay(500); 
 							p_threat->RemoveBullet(jj);
 							break;
 							
@@ -348,7 +353,7 @@ int main(int argc, char* argv[])
 
 				SDL_Rect rect_threat = p_threat->GetRectFrame();
 				bool bCol2 = SDLCommonFunc::CheckCollision(rect_player, rect_threat);
-				if ( bCol2 || bCol1  )
+				if ( bCol2  )
 				{
 					num_die++; 
 					if (num_die <= 3)

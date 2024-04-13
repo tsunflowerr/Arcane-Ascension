@@ -27,7 +27,7 @@ const int COLOR_KEY_B = 180;
 
 const int RENDER_DRAW_COLOR = 255; 
 
-const int FPS = 70;
+const int FPS = 40;
 
  
 

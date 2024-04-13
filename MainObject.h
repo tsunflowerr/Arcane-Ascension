@@ -23,7 +23,9 @@ public :
 	{
 		WALK_NONE = 0,
 		WALK_RIGHT = 1,
-	    WALK_LEFT = 2, 
+		WALK_LEFT = 2,
+		WALK_IDLE = 3, 
+		FIGHT = 4, 
 	};
 
 	bool LoadImg(std::string path, SDL_Renderer* screen); 

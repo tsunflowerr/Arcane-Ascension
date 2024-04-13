@@ -24,10 +24,10 @@ C:\GameSDL2\MainObject.cpp(283,24): warning C4244: '=': conversion from 'int' to
 C:\GameSDL2\MainObject.cpp(300,43): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
 C:\GameSDL2\MainObject.cpp(328,20): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
 C:\GameSDL2\MainObject.cpp(329,20): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\GameSDL2\MainObject.cpp(397,46): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
-C:\GameSDL2\MainObject.cpp(402,66): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
-C:\GameSDL2\MainObject.cpp(415,20): warning C4018: '<': signed/unsigned mismatch
-C:\GameSDL2\MainObject.cpp(459,16): warning C4305: '+=': truncation from 'double' to 'float'
-C:\GameSDL2\MainObject.cpp(512,29): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\GameSDL2\MainObject.cpp(522,29): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\GameSDL2\MainObject.cpp(415,46): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
+C:\GameSDL2\MainObject.cpp(420,66): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
+C:\GameSDL2\MainObject.cpp(432,20): warning C4018: '<': signed/unsigned mismatch
+C:\GameSDL2\MainObject.cpp(476,16): warning C4305: '+=': truncation from 'double' to 'float'
+C:\GameSDL2\MainObject.cpp(529,29): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\GameSDL2\MainObject.cpp(539,29): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
   GameSDL2.vcxproj -> C:\GameSDL2\Debug\GameSDL2.exe
