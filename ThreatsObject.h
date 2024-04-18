@@ -53,6 +53,7 @@ public :
 	void InitBullet(BulletObject* p_bullet, SDL_Renderer* screen); 
 	void MakeBullet(SDL_Renderer* screen, const int& x_limit, const int& y_limit); 
 	void RemoveBullet(const int& idx);
+
  
 private : 
 
@@ -72,6 +73,8 @@ private :
 	int type_move_;
 	int animation_a_ ; 
 	int animation_b_; 
+
+	SDL_Rect player; 
 	Input input_type_; 
 
 	std::vector<BulletObject*> bullet_list_; 

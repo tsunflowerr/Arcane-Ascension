@@ -132,11 +132,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AttackObject.cpp" />
     <ClCompile Include="BaseObject.cpp" />
     <ClCompile Include="BossObject.cpp" />
     <ClCompile Include="BulletObject.cpp" />
     <ClCompile Include="CommonFunc.cpp" />
     <ClCompile Include="ExplotionObject.cpp" />
+    <ClCompile Include="FLyThreats.cpp" />
     <ClCompile Include="game_map.cpp" />
     <ClCompile Include="Geometric.cpp" />
     <ClCompile Include="ImpTimer.cpp" />
@@ -147,11 +149,13 @@
     <ClCompile Include="ThreatsObject.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AttackObject.h" />
     <ClInclude Include="BaseObject.h" />
     <ClInclude Include="BossObject.h" />
     <ClInclude Include="BulletObject.h" />
     <ClInclude Include="CommonFunc.h" />
     <ClInclude Include="ExplotionObject.h" />
+    <ClInclude Include="FLyThreats.h" />
     <ClInclude Include="game_map.h" />
     <ClInclude Include="Geomeric.h" />
     <ClInclude Include="ImpTimer.h" />

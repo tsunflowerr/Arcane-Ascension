@@ -267,6 +267,23 @@ void BossObject::InitBullet(SDL_Renderer* screen)
 	}
 }
 
+
+void BossObject::RemoveBullet(const int& idx)
+{
+	int size = bullet_list_.size();
+	if (size > 0 && idx < size)
+	{
+		BulletObject* p_bullet = bullet_list_.at(idx);
+		bullet_list_.erase(bullet_list_.begin() + idx);
+
+		if (p_bullet)
+		{
+			delete p_bullet;
+			p_bullet = NULL;
+		}
+	}
+}
+
 void BossObject::MakeBullet(SDL_Renderer* des, const int& x_limit, const int& y_limit)
 {
 	if (frame_ == 18)

@@ -48,6 +48,8 @@ typedef struct Input
 	int up_; 
 	int down_; 
 	int jump_; 
+	int attack_; 
+	int hit_; 
 };
 
 typedef struct Map

@@ -23,6 +23,9 @@ MainObject::MainObject()
 	come_back_time_ = 0; 
 	money_count = 0;
 	luckky_box = 2; 
+	real_time_of_game_ = 0; 
+	time_attack = 0; 
+	delay_attack = 0; 
 }
 
 MainObject::~MainObject()
@@ -310,7 +313,7 @@ void MainObject::Show(SDL_Renderer* des)
 {
 	UpdateImagePlayer(des); 
 	
-	if (input_type_.left_ == 1 || input_type_.right_ == 1)
+	if ( (input_type_.left_ == 1 || input_type_.right_ == 1) && status_ != FIGHT )
 	{
 		frame_++; 
 	}
@@ -322,7 +325,6 @@ void MainObject::Show(SDL_Renderer* des)
 	{
 		frame_ = 0; 
 	}
-
 	if (come_back_time_ == 0)
 	{
 		rect_.x = x_pos_ - map_x_;
@@ -334,6 +336,35 @@ void MainObject::Show(SDL_Renderer* des)
 
 		SDL_RenderCopy(des, p_object_, current_clip, &renderQuad);
 	}
+	/*if (input_type_.attack_ == 1 || status_ == FIGHT  ) 
+	{
+		if (delay_attack == 0)
+		{
+			delay_attack = SDL_GetTicks(); 
+		}
+		frame2_ = SDL_GetTicks();
+		frame2_ = ( (frame2_ - delay_attack )/ 120) % 8;
+			if(come_back_time_ == 0)
+			{
+				rect_.x = x_pos_ - map_x_;
+				rect_.y = y_pos_ - map_y_;
+
+				SDL_Rect* current_clip = &frame_clip_[frame2_];
+
+				SDL_Rect renderQuad = { rect_.x , rect_.y , width_frame_ , height_frame_ };
+
+				SDL_RenderCopy(des, p_object_, current_clip, &renderQuad);
+			}
+	}
+	else
+	{
+		delay_attack = 0; 
+	}*/
+	/*if (frame2_ >= 8)
+	{
+		frame2_ = 0;
+	}*/
+
 }
 
 void MainObject::HandelInputAction(SDL_Event events, SDL_Renderer* screen)
@@ -356,7 +387,7 @@ void MainObject::HandelInputAction(SDL_Event events, SDL_Renderer* screen)
 		{
 			status_ = WALK_LEFT; 
 			input_type_.left_ = 1; 
-			input_type_.down_ = 0; 
+			input_type_.right_= 0; 
 			UpdateImagePlayer(screen);
 		}
 		break;
@@ -365,6 +396,15 @@ void MainObject::HandelInputAction(SDL_Event events, SDL_Renderer* screen)
 			input_type_.jump_ = 1; 
 		}
 		break; 
+		case SDLK_j:
+		{
+			status_ = FIGHT;
+			input_type_.attack_ = 1; 
+			input_type_.left_ = 0; 
+			input_type_.right_ = 0;
+			UpdateImagePlayer(screen);
+		}
+		break;
 		}
 	}
 	else if (events.type == SDL_KEYUP)
@@ -389,13 +429,22 @@ void MainObject::HandelInputAction(SDL_Event events, SDL_Renderer* screen)
 		break;
 		case SDLK_j : 
 		{
-			status_ = FIGHT; 
+			status_ = WALK_RIGHT;
+			input_type_.attack_ = 0;
 			UpdateImagePlayer(screen); 
 		}
-		break; 
+		break;
 		}
 	}
 
+	/*if (input_type_.attack_ == 1 && time_attack > 0 )
+	{
+		time_attack -= real_time_of_game_; 
+	}
+	else {
+		input_type_.attack_ = 0; 
+		time_attack = 10000; 
+	}*/
 	
 	if (events.type == SDL_MOUSEBUTTONDOWN || events.type == SDL_KEYDOWN  )
 	{
@@ -568,13 +617,13 @@ void MainObject::UpdateImagePlayer(SDL_Renderer* des)
 		{
 			LoadImg("img//player_left.png",des); 
 		}
-		else if (status_ = FIGHT)
-		{
-			LoadImg("img//Attack1.png", des); 
-		}
-		else
+		else if ( status_ == WALK_RIGHT )
 		{
 			LoadImg("img//player_right.png", des);
+		}
+		else if ( status_ == FIGHT )
+		{
+		    LoadImg("map//sdad.png", des);
 		}
 	}
 	else

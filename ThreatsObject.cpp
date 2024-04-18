@@ -1,5 +1,6 @@
 #pragma once
 #include "ThreatsObject.h"
+#include "MainObject.h"
 
 ThreatsObject::ThreatsObject()
 {
@@ -283,27 +284,54 @@ void ThreatsObject::ImpMoveType(SDL_Renderer* screen)
 	}
 	else
 	{
-		if (on_ground_ == true)
+		if(on_ground_ == true)
 		{
-			if (x_pos_ > animation_b_)
+			SDL_Rect main_object_position = player ;
+			if (rect_.x >= 0 && abs(rect_.x - main_object_position.x) < 700)
 			{
-				input_type_.left_ = 1; 
-				input_type_.right_ = 0; 
+
+				if (main_object_position.x < rect_.x)
+				{
+					SetAnimationPos(main_object_position.x, rect_.x);
+					input_type_.left_ = 1;
+					input_type_.right_ = 0;
+					LoadImg("img// threat_left.png", screen);
+				}
+				else if (main_object_position.x > rect_.x)
+				{
+
+					SetAnimationPos(rect_.x, main_object_position.x);
+
+					input_type_.left_ = 0;
+					input_type_.right_ = 1;
+					LoadImg("img//threat_right.png", screen);
+				}
+			}
+			else {
+
+
+				if (x_pos_ > animation_b_)
+				{
+					input_type_.left_ = 1;
+					input_type_.right_ = 0;
+					LoadImg("img// threat_left.png", screen);
+				}
+				else if (x_pos_ < animation_a_)
+				{
+					input_type_.left_ = 0;
+					input_type_.right_ = 1;
+					LoadImg("img// threat_right.png", screen);
+				}
+			}
+			if (input_type_.left_ == 1)
+			{
 				LoadImg("img//threat_left.png", screen);
 			}
-			else if (x_pos_ < animation_a_)
+			else if (input_type_.left_ == 0)
 			{
-				input_type_.left_ = 0; 
-				input_type_.right_ = 1; 
-				LoadImg("img//threat_right.png", screen); 
+				LoadImg("img//threat_right.png", screen);
 			}
-		}
-		else
-		{
-			if (input_type_.left_ == 1 )
-			{
-				LoadImg("img//threat_left.png", screen);
-			}
+
 		}
 	}
 }

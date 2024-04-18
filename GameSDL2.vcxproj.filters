@@ -54,6 +54,12 @@
     <ClCompile Include="BossObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="AttackObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FLyThreats.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommonFunc.h">
@@ -90,6 +96,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="BossObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AttackObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FLyThreats.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

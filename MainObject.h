@@ -10,7 +10,7 @@
 
 #define GRAVITY_SPEED 0.8 
 #define MAX_FALL_SPEED 10 
-#define PLAYER_SPEED 5
+#define PLAYER_SPEED 8
 #define PLAYER_JUMP_VALUE 20
 
 class MainObject : public BaseObject
@@ -30,6 +30,7 @@ public :
 
 	bool LoadImg(std::string path, SDL_Renderer* screen); 
 	void Show(SDL_Renderer* des); 
+
 	void HandelInputAction(SDL_Event events, SDL_Renderer* screen);
 	void set_clips(); 
 
@@ -52,6 +53,10 @@ public :
 	void IncreaseMoney(); 
 	void set_comeback_time(const int& cb_time) { come_back_time_ = cb_time;  }
 	int GetMoneyCount() const { return money_count; };
+	void set_real_time_of_game(const int& real_time) { real_time_of_game_ = real_time; }
+	float getxpos() { return x_pos_;  }
+	float getypos() { return y_pos_;  }
+
 private:
 
 	int money_count; 
@@ -69,12 +74,19 @@ private:
 
 	SDL_Rect frame_clip_[8]; 
 	Input input_type_; 
+
+	int real_time_of_game_; 
 	int frame_ ; 
 	int status_;
 	bool on_ground_; 
+	bool hit_; 
 
 	int map_x_; 
 	int map_y_; 
+
+	int time_attack; 
+	int delay_attack; 
+	
 
 	int come_back_time_; 
 };
