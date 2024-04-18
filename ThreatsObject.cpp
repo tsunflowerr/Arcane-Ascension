@@ -284,9 +284,10 @@ void ThreatsObject::ImpMoveType(SDL_Renderer* screen)
 	}
 	else
 	{
-		if(on_ground_ == true)
+		if (on_ground_ == true)
 		{
-			SDL_Rect main_object_position = player ;
+			SDL_Rect main_object_position = player;
+
 			if (rect_.x >= 0 && abs(rect_.x - main_object_position.x) < 700)
 			{
 
@@ -295,7 +296,7 @@ void ThreatsObject::ImpMoveType(SDL_Renderer* screen)
 					SetAnimationPos(main_object_position.x, rect_.x);
 					input_type_.left_ = 1;
 					input_type_.right_ = 0;
-					LoadImg("img// threat_left.png", screen);
+					LoadImg("img// threat_left1.png", screen);
 				}
 				else if (main_object_position.x > rect_.x)
 				{
@@ -304,7 +305,7 @@ void ThreatsObject::ImpMoveType(SDL_Renderer* screen)
 
 					input_type_.left_ = 0;
 					input_type_.right_ = 1;
-					LoadImg("img//threat_right.png", screen);
+					LoadImg("img//threat_right1.png", screen);
 				}
 			}
 			else {
@@ -314,13 +315,13 @@ void ThreatsObject::ImpMoveType(SDL_Renderer* screen)
 				{
 					input_type_.left_ = 1;
 					input_type_.right_ = 0;
-					LoadImg("img// threat_left.png", screen);
+					LoadImg("img// threat_left1.png", screen);
 				}
 				else if (x_pos_ < animation_a_)
 				{
 					input_type_.left_ = 0;
 					input_type_.right_ = 1;
-					LoadImg("img// threat_right.png", screen);
+					LoadImg("img// threat_right1.png", screen);
 				}
 			}
 			if (input_type_.left_ == 1)
@@ -331,7 +332,6 @@ void ThreatsObject::ImpMoveType(SDL_Renderer* screen)
 			{
 				LoadImg("img//threat_right.png", screen);
 			}
-
 		}
 	}
 }

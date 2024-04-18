@@ -367,7 +367,7 @@ void MainObject::Show(SDL_Renderer* des)
 
 }
 
-void MainObject::HandelInputAction(SDL_Event events, SDL_Renderer* screen)
+void MainObject::HandelInputAction(SDL_Event events, SDL_Renderer* screen , Mix_Chunk* bullet_sound[2] ) 
 {
 	if (events.type == SDL_KEYDOWN)
 	{
@@ -403,6 +403,7 @@ void MainObject::HandelInputAction(SDL_Event events, SDL_Renderer* screen)
 			input_type_.left_ = 0; 
 			input_type_.right_ = 0;
 			UpdateImagePlayer(screen);
+			Mix_PlayChannel(-1, bullet_sound[0], 0); 
 		}
 		break;
 		}
@@ -473,6 +474,7 @@ void MainObject::HandelInputAction(SDL_Event events, SDL_Renderer* screen)
 			p_bullet->set_is_move(true); 
 
 			p_bullet_list_.push_back(p_bullet); 
+			Mix_PlayChannel(-1, bullet_sound[0], 0);
 		}
 	}
 }

@@ -342,7 +342,7 @@ void AttackObject::Show(SDL_Renderer* des)
 
 }
 
-void AttackObject::HandelInputAction(SDL_Event events, SDL_Renderer* screen)
+void AttackObject::HandelInputAction(SDL_Event events, SDL_Renderer* screen , Mix_Chunk* bullet_sound[2] )
 {
 	if (events.type == SDL_KEYDOWN)
 	{

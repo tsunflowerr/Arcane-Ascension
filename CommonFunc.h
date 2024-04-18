@@ -17,6 +17,9 @@ static SDL_Renderer* g_screen = NULL;
 static SDL_Event g_event; 
 static SDL_Surface* g_image_menu = NULL;
 
+static Mix_Chunk* g_sound_bullet[2]; 
+static Mix_Chunk* g_sound_exp[2]; 
+
 const int SCREEN_WIDTH = 1280; 
 const int SCREEN_HEIGHT = 640; 
 const int SCREEN_BPP = 32; 

@@ -11,9 +11,11 @@
 #include "BossObject.h"
 #include "AttackObject.h"
 #include "FLyThreats.h"
+#include <fstream>
 
 BaseObject g_background; 
 BaseObject m_background; 
+BaseObject menu_background;
 TTF_Font* font_time = NULL; 
 
 bool InitData()
@@ -61,6 +63,18 @@ bool InitData()
 		}
 	}
 
+	if (Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 4096) == -1)
+	{
+		success =  false; 
+	}
+	g_sound_bullet[0] = Mix_LoadWAV("mixer//Fireball+1.wav");
+	g_sound_exp[0] = Mix_LoadWAV("mixer//Explosion.wav"); 
+	g_sound_exp[1] = Mix_LoadWAV("mixer//Explosion.wav"); 
+
+	if (g_sound_exp[0] == NULL || g_sound_bullet[0] == NULL || g_sound_exp[1] == NULL)
+	{
+		success = false; 
+	}
 	return success; 
 }
 
@@ -79,6 +93,39 @@ bool LoadmBackground()
 		return false;
 	return true;
 }
+
+bool Loadmenuhighscore()
+{
+	bool ret = menu_background.LoadImg("img//22.png", g_screen);
+
+	if (ret == false)
+		return false;
+	return true;
+}
+
+
+
+int getHighScore() {
+	std::ifstream file("highscore//highscore.txt");
+	int highScore = 0;
+	if (file) {
+		file >> highScore;
+		file.close();
+	}
+	return highScore;
+}
+
+void updateHighScore(int score) {
+	int highScore = getHighScore();
+	if (score > highScore) {
+		std::ofstream file("highscore.txt");
+		if (file) {
+			file << score;
+			file.close();
+		}
+	}
+}
+
 
 
 void close()
@@ -119,7 +166,7 @@ std::vector<BossObject*> MakeBossList()
 std::vector<FlyThreats*> MakeFlyThreats()
 {
 	std::vector<FlyThreats*> list_f_threats; 
-	FlyThreats* fly_threats = new FlyThreats[20];
+	/*FlyThreats* fly_threats = new FlyThreats[20];
 	for (int i = 0; i < 20; i++)
 	{
 		FlyThreats* f_threats = (fly_threats + i);
@@ -127,14 +174,14 @@ std::vector<FlyThreats*> MakeFlyThreats()
 		{
 			f_threats->LoadImg("img//helicopter.png", g_screen);
 			f_threats->set_clips();
-			f_threats->set_x_pos(i * 1000 + 900);
-			f_threats->set_y_pos(100);
-
+			f_threats->set_xpos(i * 1200 + 700);
+			f_threats->set_ypos(30);
+			
 			BulletObject* f_bullet = new BulletObject();
-			f_threats->InitBullet(f_bullet, g_screen);
+			f_threats->InitBullet(g_screen);
 			list_f_threats.push_back(f_threats);
 		}
-	}
+	}*/
 	return list_f_threats; 
 }
 
@@ -142,7 +189,7 @@ std::vector<ThreatsObject*> MakeThreatList()
 {
 	std::vector<ThreatsObject*> list_threats; 
 
-	ThreatsObject* dynamic_threats = new ThreatsObject[20];
+	/*ThreatsObject* dynamic_threats = new ThreatsObject[20];
 	for (int i = 0; i < 20; i++)
 	{
 		ThreatsObject* p_threat = (dynamic_threats + i); 
@@ -162,7 +209,7 @@ std::vector<ThreatsObject*> MakeThreatList()
 
 			list_threats.push_back(p_threat); 
 		}
-	}
+	}*/
 
 
 	ThreatsObject* threats_objs = new ThreatsObject[20]; 
@@ -248,7 +295,9 @@ int main(int argc, char* argv[])
 	TextObject start_button;
 	TextObject quit_button;
 	TextObject guide_button;
-
+	TextObject end; 
+	TextObject highscore; 
+	TextObject highscoreval; 
 
 
 	bool is_quit = false;
@@ -264,8 +313,8 @@ int main(int argc, char* argv[])
 				start = false;
 				is_quit = true;
 			}
-			p_player.HandelInputAction(g_event, g_screen);
-			attack_player.HandelInputAction(g_event, g_screen);
+			p_player.HandelInputAction(g_event, g_screen , g_sound_bullet );
+			attack_player.HandelInputAction(g_event, g_screen,g_sound_bullet );
 		}
 
 		//SDL_SetRenderDrawColor(g_screen, 210, 210, 210, 210);
@@ -336,9 +385,9 @@ int main(int argc, char* argv[])
 				start = false;
 				is_quit = true;
 			}
-			p_player.HandelInputAction(g_event, g_screen);
+			p_player.HandelInputAction(g_event, g_screen,g_sound_bullet);
 			attack_player.set_pos(p_player.getxpos(), p_player.getypos());
-			attack_player.HandelInputAction(g_event, g_screen);
+			attack_player.HandelInputAction(g_event, g_screen,g_sound_bullet);
 		}
 
 		g_background.Render(g_screen, NULL);
@@ -373,7 +422,7 @@ int main(int argc, char* argv[])
 		{
 			ThreatsObject* p_threat = threats_list.at(i);
 			int val2 = abs(p_player.getxpos() - p_threat->get_x_pos());
-			if (p_threat != NULL && val2 <= SCREEN_WIDTH + 100 )
+			if (p_threat != NULL && val2 <= SCREEN_WIDTH + 500 )
 			{
 					p_threat->SetMapXY(map_data.start_x_, map_data.start_y_);
 					p_threat->ImpMoveType(g_screen);
@@ -419,6 +468,8 @@ int main(int argc, char* argv[])
 								close();
 								SDL_Quit();
 								return 0;
+								updateHighScore(mark_value); 
+								updateHighScore(mark_value); 
 							}
 
 						}
@@ -466,6 +517,7 @@ int main(int argc, char* argv[])
 							p_player.RemoveBullet(r);
 							obj_threat->Free();
 							threats_list.erase(threats_list.begin() + t);
+							Mix_PlayChannel(-1, g_sound_exp[0], 0); 
 
 						}
 					}
@@ -478,10 +530,9 @@ int main(int argc, char* argv[])
 		{
 			FlyThreats* f_threat = fly_threats.at(i);
 			int val2 = abs(p_player.getxpos() - f_threat->get_x_pos());
-			if (f_threat != NULL && val2 <= SCREEN_WIDTH + 100)
+			if (f_threat != NULL && val2 <= SCREEN_WIDTH )
 			{
 				f_threat->SetMapXY(map_data.start_x_, map_data.start_y_);
-				f_threat->ImpMoveType(g_screen);
 				f_threat->DoPlayer(map_data);
 				f_threat->MakeBullet(g_screen, SCREEN_WIDTH, SCREEN_HEIGHT);
 				f_threat->Show(g_screen);
@@ -502,7 +553,7 @@ int main(int argc, char* argv[])
 					}
 				}
 
-				SDL_Rect rect_threat = f_threat->GetRectFrame();
+				SDL_Rect rect_threat = f_threat->GetRect();
 				bool bCol2 = SDLCommonFunc::CheckCollision(rect_player, rect_threat);
 				if (bCol2 || bCol1)
 				{
@@ -524,55 +575,9 @@ int main(int argc, char* argv[])
 							close();
 							SDL_Quit();
 							return 0;
+							updateHighScore(mark_value);
 						}
 
-					}
-				}
-			}
-		}
-
-
-		int frame_exp_width1 = exp_threat.get_frame_width_();
-		int frame_exp_height1 = exp_threat.get_frame_height_();
-		std::vector<BulletObject*> bullet_arr1 = p_player.get_bullet_list();
-		for (int r = 0; r < bullet_arr1.size(); r++)
-		{
-			BulletObject* p_bullet = bullet_arr1.at(r);
-			if (p_bullet != NULL)
-			{
-				for (int t = 0; t < fly_threats.size(); t++)
-				{
-					FlyThreats* obj_threat = fly_threats.at(t);
-					if (obj_threat != NULL)
-					{
-						SDL_Rect tRect;
-						tRect.x = obj_threat->GetRect().x;
-						tRect.y = obj_threat->GetRect().y;
-						tRect.w = obj_threat->get_width_frame();
-						tRect.h = obj_threat->get_width_frame();
-
-						SDL_Rect bRect = p_bullet->GetRect();
-
-						bool bCol = SDLCommonFunc::CheckCollision(bRect, tRect);
-
-						if (bCol)
-						{
-							mark_value++;
-							for (int ex = 0; ex < 8; ex++)
-							{
-								int x_pos = p_bullet->GetRect().x - frame_exp_width1 * 0.5;
-								int y_pos = p_bullet->GetRect().y - frame_exp_height1 * 0.5;
-
-								exp_threat.set_frame(ex);
-								exp_threat.SetRect(x_pos, y_pos);
-								exp_threat.Show(g_screen);
-							}
-
-							p_player.RemoveBullet(r);
-							obj_threat->Free();
-							fly_threats.erase(fly_threats.begin() + t);
-
-						}
 					}
 				}
 			}
@@ -590,6 +595,7 @@ int main(int argc, char* argv[])
 			{
 				is_quit = true;
 				break;
+				updateHighScore(mark_value); 
 			}
 
 		}
@@ -671,6 +677,7 @@ int main(int argc, char* argv[])
 								close();
 								SDL_Quit();
 								return 0;
+								updateHighScore(mark_value); 
 							}
 
 						}
@@ -718,6 +725,119 @@ int main(int argc, char* argv[])
 								p_player.RemoveBullet(r);
 								obj_threat->Free();
 								boss_list.erase(boss_list.begin() + t);
+								while (!is_quit ) {
+									while (SDL_PollEvent(&g_event) != 0)
+									{
+										if (g_event.type == SDL_QUIT)
+										{
+											start = false;
+											is_quit = true;
+										}
+										p_player.HandelInputAction(g_event, g_screen, g_sound_bullet);
+										attack_player.HandelInputAction(g_event, g_screen, g_sound_bullet);
+									}
+
+									//SDL_SetRenderDrawColor(g_screen, 210, 210, 210, 210);
+									//SDL_RenderClear(g_screen);
+
+									m_background.Render(g_screen, NULL);
+
+									int mouseX, mouseY;
+									SDL_GetMouseState(&mouseX, &mouseY);
+									end.SetText("YOU WIN");
+									quit_button.SetText("QUIT");
+									highscore.SetText("High Score");
+									end.LoadFromRenderText(font_time, g_screen);
+									end.SetColor(TextObject::BLACK_TEXT); 
+									end.RenderText(g_screen, 1280 / 4, SCREEN_HEIGHT /2 );
+									highscore.LoadFromRenderText(font_time, g_screen);
+									if (mouseX >= 1280 / 2 - 40 && mouseX <= 1280 / 2 - 40 + 90 && mouseY >= 480 / 2 - 15 && mouseY <= 480 / 2 + 37 - 15) {
+										highscore.SetColor(TextObject::BLACK_TEXT);
+										if (g_event.type == SDL_MOUSEBUTTONDOWN) {
+											if (g_event.button.button = SDL_BUTTON_RIGHT)
+											{
+												break; 
+
+											}
+										}
+									}
+									else {
+										highscore.SetColor(TextObject::RED_TEXT);
+									}
+
+									highscore.RenderText(g_screen, 1280 / 2 - 40, 480 / 2);
+
+									quit_button.LoadFromRenderText(font_time, g_screen);
+									if (mouseX >= 1280 / 2 - 40 && mouseX <= 1280 / 2 - 40 + 90 && mouseY >= 480 / 2 - 15 + 120 && mouseY <= 480 / 2 + 37 - 15 + 120) {
+										quit_button.SetColor(TextObject::BLACK_TEXT);
+										if (g_event.type == SDL_MOUSEBUTTONDOWN) {
+											if (g_event.button.button = SDL_BUTTON_RIGHT)
+											{
+												is_quit = true;
+											}
+										}
+									}
+									else {
+										quit_button.SetColor(TextObject::RED_TEXT);
+									}
+									quit_button.RenderText(g_screen, 1280 / 2 - 40 + 5, 480 / 2 + 114);
+
+									SDL_RenderPresent(g_screen);
+									SDL_Delay(10);
+
+								}
+								while (!is_quit) {
+									while (SDL_PollEvent(&g_event) != 0)
+									{
+										if (g_event.type == SDL_QUIT)
+										{
+											start = false;
+											is_quit = true;
+										}
+										p_player.HandelInputAction(g_event, g_screen, g_sound_bullet);
+										attack_player.HandelInputAction(g_event, g_screen, g_sound_bullet);
+									}
+
+									//SDL_SetRenderDrawColor(g_screen, 210, 210, 210, 210);
+									//SDL_RenderClear(g_screen);
+
+									menu_background.Render(g_screen, NULL);
+									quit_button.SetText("QUIT");
+
+									int mouseX, mouseY;
+									SDL_GetMouseState(&mouseX, &mouseY);
+
+									int maxscore = getHighScore();
+									std::string maxhighscore = std::to_string(maxscore);
+									std::string strhs("");
+									strhs += maxhighscore;
+
+									highscoreval.SetText(strhs);
+									highscoreval.LoadFromRenderText(font_time, g_screen);
+									highscoreval.RenderText(g_screen, SCREEN_WIDTH * 0.5, SCREEN_HEIGHT / 2);
+
+									quit_button.LoadFromRenderText(font_time, g_screen);
+									if (mouseX >= 1280 / 2 - 40 && mouseX <= 1280 / 2 - 40 + 90 && mouseY >= 480 / 2 - 15 + 120 && mouseY <= 480 / 2 + 37 - 15 + 120) {
+										quit_button.SetColor(TextObject::BLACK_TEXT);
+										if (g_event.type == SDL_MOUSEBUTTONDOWN) {
+											if (g_event.button.button = SDL_BUTTON_RIGHT)
+											{
+												is_quit = true;
+											}
+										}
+									}
+									else {
+										quit_button.SetColor(TextObject::RED_TEXT);
+									}
+									quit_button.RenderText(g_screen, 1280 / 2 - 40 + 5, 480 / 2 + 114);
+
+									SDL_RenderPresent(g_screen);
+									SDL_Delay(10);
+
+								}
+
+
+								
 
 							}
 						}

@@ -10,7 +10,7 @@
 
 #define GRAVITY_SPEED 0.8 
 #define MAX_FALL_SPEED 10 
-#define PLAYER_SPEED 8
+#define PLAYER_SPEED 30
 #define PLAYER_JUMP_VALUE 20
 
 class MainObject : public BaseObject
@@ -31,7 +31,7 @@ public :
 	bool LoadImg(std::string path, SDL_Renderer* screen); 
 	void Show(SDL_Renderer* des); 
 
-	void HandelInputAction(SDL_Event events, SDL_Renderer* screen);
+	void HandelInputAction(SDL_Event events, SDL_Renderer* screen , Mix_Chunk* bullet_sound[2]);
 	void set_clips(); 
 
 	void DoPlayer(Map& map_data);
@@ -89,6 +89,7 @@ private:
 	
 
 	int come_back_time_; 
+
 };
 
 
