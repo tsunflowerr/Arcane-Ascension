@@ -10,6 +10,7 @@
 #include "Geomeric.h"
 #include "BossObject.h"
 #include "AttackObject.h"
+#include "FLyThreats.h"
 
 BaseObject g_background; 
 BaseObject m_background; 
@@ -115,6 +116,28 @@ std::vector<BossObject*> MakeBossList()
 
 }
 
+std::vector<FlyThreats*> MakeFlyThreats()
+{
+	std::vector<FlyThreats*> list_f_threats; 
+	FlyThreats* fly_threats = new FlyThreats[20];
+	for (int i = 0; i < 20; i++)
+	{
+		FlyThreats* f_threats = (fly_threats + i);
+		if (f_threats != NULL)
+		{
+			f_threats->LoadImg("img//helicopter.png", g_screen);
+			f_threats->set_clips();
+			f_threats->set_x_pos(i * 1000 + 900);
+			f_threats->set_y_pos(100);
+
+			BulletObject* f_bullet = new BulletObject();
+			f_threats->InitBullet(f_bullet, g_screen);
+			list_f_threats.push_back(f_threats);
+		}
+	}
+	return list_f_threats; 
+}
+
 std::vector<ThreatsObject*> MakeThreatList()
 {
 	std::vector<ThreatsObject*> list_threats; 
@@ -200,6 +223,7 @@ int main(int argc, char* argv[])
 
 	std::vector<ThreatsObject*> threats_list = MakeThreatList();
 
+	std::vector<FlyThreats*> fly_threats = MakeFlyThreats(); 
 	// Boss Threat 
 	std::vector<BossObject*> boss_list = MakeBossList(); 
 
@@ -448,6 +472,112 @@ int main(int argc, char* argv[])
 				}
 			}
 		}
+
+
+		for (int i = 0; i < fly_threats.size(); i++)
+		{
+			FlyThreats* f_threat = fly_threats.at(i);
+			int val2 = abs(p_player.getxpos() - f_threat->get_x_pos());
+			if (f_threat != NULL && val2 <= SCREEN_WIDTH + 100)
+			{
+				f_threat->SetMapXY(map_data.start_x_, map_data.start_y_);
+				f_threat->ImpMoveType(g_screen);
+				f_threat->DoPlayer(map_data);
+				f_threat->MakeBullet(g_screen, SCREEN_WIDTH, SCREEN_HEIGHT);
+				f_threat->Show(g_screen);
+
+				SDL_Rect rect_player = p_player.GetRectFrame();
+				bool bCol1 = false;
+				std::vector<BulletObject*> tBullet_list = f_threat->get_bullet_list();
+				for (int jj = 0; jj < tBullet_list.size(); ++jj)
+				{
+					BulletObject* pt_bullet = tBullet_list.at(jj);
+					if (pt_bullet)
+					{
+						bCol1 = SDLCommonFunc::CheckCollision(pt_bullet->GetRect(), rect_player);
+						if (bCol1)
+						{
+							break;
+						}
+					}
+				}
+
+				SDL_Rect rect_threat = f_threat->GetRectFrame();
+				bool bCol2 = SDLCommonFunc::CheckCollision(rect_player, rect_threat);
+				if (bCol2 || bCol1)
+				{
+					num_die++;
+					if (num_die <= 3)
+					{
+						p_player.SetRect(0, 0);
+						p_player.set_comeback_time(60);
+						SDL_Delay(400);
+						player_power.Decrease();
+						player_power.Render(g_screen);
+						continue;
+					}
+					else
+					{
+						if ((MessageBox(NULL, L"GAME OVER", L"Info", MB_OK | MB_ICONSTOP) == IDOK))
+						{
+							f_threat->Free();
+							close();
+							SDL_Quit();
+							return 0;
+						}
+
+					}
+				}
+			}
+		}
+
+
+		int frame_exp_width1 = exp_threat.get_frame_width_();
+		int frame_exp_height1 = exp_threat.get_frame_height_();
+		std::vector<BulletObject*> bullet_arr1 = p_player.get_bullet_list();
+		for (int r = 0; r < bullet_arr1.size(); r++)
+		{
+			BulletObject* p_bullet = bullet_arr1.at(r);
+			if (p_bullet != NULL)
+			{
+				for (int t = 0; t < fly_threats.size(); t++)
+				{
+					FlyThreats* obj_threat = fly_threats.at(t);
+					if (obj_threat != NULL)
+					{
+						SDL_Rect tRect;
+						tRect.x = obj_threat->GetRect().x;
+						tRect.y = obj_threat->GetRect().y;
+						tRect.w = obj_threat->get_width_frame();
+						tRect.h = obj_threat->get_width_frame();
+
+						SDL_Rect bRect = p_bullet->GetRect();
+
+						bool bCol = SDLCommonFunc::CheckCollision(bRect, tRect);
+
+						if (bCol)
+						{
+							mark_value++;
+							for (int ex = 0; ex < 8; ex++)
+							{
+								int x_pos = p_bullet->GetRect().x - frame_exp_width1 * 0.5;
+								int y_pos = p_bullet->GetRect().y - frame_exp_height1 * 0.5;
+
+								exp_threat.set_frame(ex);
+								exp_threat.SetRect(x_pos, y_pos);
+								exp_threat.Show(g_screen);
+							}
+
+							p_player.RemoveBullet(r);
+							obj_threat->Free();
+							fly_threats.erase(fly_threats.begin() + t);
+
+						}
+					}
+				}
+			}
+		}
+
 
 		// Show game time 
 
