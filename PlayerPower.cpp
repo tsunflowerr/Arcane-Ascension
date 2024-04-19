@@ -18,7 +18,7 @@ void PlayerPower::AddPos(const int& xp)
 
 void PlayerPower::Init(SDL_Renderer* screen)
 {
-	LoadImg("img//player_pw.png", screen); 
+	LoadImg("img//heart.png", screen); 
 	number_ = 3; 
 	if (pos_list_.size() > 0)
 	{
@@ -26,8 +26,8 @@ void PlayerPower::Init(SDL_Renderer* screen)
 	}
 
 	AddPos(20); 
-	AddPos(60); 
-	AddPos(100); 
+	AddPos(50); 
+	AddPos(80); 
 }
 
 void PlayerPower::Show(SDL_Renderer* screen)
@@ -50,7 +50,7 @@ void PlayerPower::InitCrease()
 {
 	number_++; 
 	int last_pos = pos_list_.back(); 
-	last_pos += 40; 
+	last_pos += 30; 
 	pos_list_.push_back(last_pos); 
 }
 
@@ -66,7 +66,7 @@ PlayerMoney::~PlayerMoney()
 
 void PlayerMoney::Init(SDL_Renderer* screen)
 {
-	bool ret = LoadImg("img//money_img.png", screen); 
+	bool ret = LoadImg("img//coin.png", screen); 
 }
 
 void PlayerMoney::Show(SDL_Renderer* screen)

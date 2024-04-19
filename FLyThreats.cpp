@@ -253,17 +253,24 @@ void FlyThreats::CheckToMap(Map& g_map)
 	}
 }
 
-void FlyThreats::InitBullet(SDL_Renderer* screen)
+void FlyThreats::InitBullet(BulletObject* p_bullet, SDL_Renderer* screen)
 {
-	BulletObject* p_bullet = new BulletObject();
-	bool ret = p_bullet->LoadImg("img//boss bullet.png", screen);
-	if (ret)
+	if (p_bullet != NULL)
 	{
-		p_bullet->set_bullet_dir(BulletObject::DIR_LEFT);
-		p_bullet->set_is_move(true);
-		p_bullet->SetRect(rect_.x , rect_.y );
-		p_bullet->set_x_val(30);
-		bullet_list_.push_back(p_bullet);
+
+		p_bullet->set_bullet_type(BulletObject::LASER_BULLET);
+		bool ret = p_bullet->LoadImgBullet(screen);
+		if (ret)
+		{
+			SDL_Rect main_object_position = player;
+			p_bullet->set_is_move(true);
+			p_bullet->set_bullet_dir(BulletObject::DIR_LEFT);
+			p_bullet->SetRect(rect_.x, rect_.y);
+			//p_bullet->set_x_val(15);
+			p_bullet->SetDirection1(main_object_position);
+			bullet_list_.push_back(p_bullet);
+		}
+
 	}
 }
 
@@ -300,8 +307,14 @@ void FlyThreats::MakeBullet(SDL_Renderer* des, const int& x_limit, const int& y_
 
 			else
 			{
-				p_bullet->Free();
-				bullet_list_.erase(bullet_list_.begin() + i);
+				p_bullet->set_is_move(true);
+				p_bullet->SetRect(rect_.x, rect_.y);
+
+				SDL_Rect main_object_position = player;
+
+				p_bullet->set_bullet_dir(BulletObject::DIR_DOW_RIGHT);
+				p_bullet->SetDirection1(main_object_position);
+				p_bullet->HandleMove(x_limit, y_limit);
 			}
 		}
 	}

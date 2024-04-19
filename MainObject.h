@@ -10,7 +10,7 @@
 
 #define GRAVITY_SPEED 0.8 
 #define MAX_FALL_SPEED 10 
-#define PLAYER_SPEED 30
+#define PLAYER_SPEED 6
 #define PLAYER_JUMP_VALUE 20
 
 class MainObject : public BaseObject
@@ -56,6 +56,7 @@ public :
 	void set_real_time_of_game(const int& real_time) { real_time_of_game_ = real_time; }
 	float getxpos() { return x_pos_;  }
 	float getypos() { return y_pos_;  }
+	int getheart() { return checkheart; }
 
 private:
 
@@ -89,6 +90,7 @@ private:
 	
 
 	int come_back_time_; 
+	bool checkheart; 
 
 };
 

@@ -45,6 +45,7 @@ public :
 
 	void HandleMove(const int& x_border, const int& y_border); 
 	bool LoadImgBullet(SDL_Renderer* des); 
+	void SetDirection1(const SDL_Rect& target_position);
 
 
 

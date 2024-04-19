@@ -53,7 +53,9 @@ public :
 	void InitBullet(BulletObject* p_bullet, SDL_Renderer* screen); 
 	void MakeBullet(SDL_Renderer* screen, const int& x_limit, const int& y_limit); 
 	void RemoveBullet(const int& idx);
+	void SetBulletRect(const int& idx); 
 
+	void get_player_rect(const SDL_Rect& pl) { player = pl; } 
  
 private : 
 

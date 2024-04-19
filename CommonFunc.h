@@ -42,7 +42,10 @@ const int FPS = 40;
 
 #define STATE_MONEY 4 
 
-#define LUCKKY_BOX 7
+#define LUCKKY_BOX 10
+#define TRAP 11
+#define TRAP2 13
+#define HEART 12 
 
 typedef struct Input
 {

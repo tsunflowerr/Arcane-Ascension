@@ -1,4 +1,5 @@
 #include "MainObject.h"
+#include "PlayerPower.h"
 #include <iostream>
 
 
@@ -26,6 +27,8 @@ MainObject::MainObject()
 	real_time_of_game_ = 0; 
 	time_attack = 0; 
 	delay_attack = 0; 
+	checkheart = 0; 
+	
 }
 
 MainObject::~MainObject()
@@ -151,6 +154,22 @@ void MainObject::CheckToMap(Map& map_data)
 				}
 				std::cout << luckky_box; 
 			}
+			else if ((val1 == TRAP) || (val2 == TRAP ))
+			{
+				map_data.tile[y1][x2] = 0;
+				map_data.tile[y2][x2] = 0;
+			}
+			else if ((val1 == TRAP2) || (val2 == TRAP2))
+			{
+				map_data.tile[y1][x2] = 0;
+				map_data.tile[y2][x2] = 0;
+			}
+			else if ((val1 == HEART) || (val2 == HEART) )
+			{
+				map_data.tile[y1][x2] = 0;
+				map_data.tile[y2][x2] = 0;
+				checkheart = 1;
+			}
 			else
 			{
 				if (val1 != BLANK_TILE || val2 != BLANK_TILE)
@@ -187,6 +206,25 @@ void MainObject::CheckToMap(Map& map_data)
 					map_data.tile[y2][x1] = 0;
 				}
 				std::cout << luckky_box; 
+			}
+			else if (val1 == TRAP || (val2 == TRAP ))
+			{
+				map_data.tile[y1][x1] = 0;
+				map_data.tile[y2][x1] = 0;
+
+			}
+			else if (val1 == TRAP2 || (val2 == TRAP2))
+			{
+				map_data.tile[y1][x1] = 0;
+				map_data.tile[y2][x1] = 0;
+
+			}
+			else if (val1 == HEART || (val2 == HEART ))
+			{
+				map_data.tile[y1][x1] = 0;
+				map_data.tile[y2][x1] = 0;
+				checkheart = 1;
+
 			}
 			else
 			{
@@ -239,6 +277,22 @@ void MainObject::CheckToMap(Map& map_data)
 				}
 				std::cout << luckky_box; 
 			}
+			else if (val1 == TRAP || val2 == TRAP )
+			{
+				map_data.tile[y2][x1] = 0;
+				map_data.tile[y2][x2] = 0;
+			}
+			else if (val1 == TRAP2 || val2 == TRAP2)
+			{
+				map_data.tile[y2][x1] = 0;
+				map_data.tile[y2][x2] = 0;
+			}
+			else if (val1 == HEART || val2 == HEART )
+			{
+				map_data.tile[y2][x1] = 0;
+				map_data.tile[y2][x2] = 0;
+				checkheart = 1;
+			}
 			else
 			{
 				if (val1 != BLANK_TILE || val2 != BLANK_TILE)
@@ -279,6 +333,22 @@ void MainObject::CheckToMap(Map& map_data)
 				}
 				std::cout << luckky_box; 
 			}
+			else if ( val1 == TRAP || val2 == TRAP )
+			{
+				map_data.tile[y1][x1] = 0;
+				map_data.tile[y1][x2] = 0;
+			}
+			else if (val1 == TRAP2 || val2 == TRAP2)
+			{
+				map_data.tile[y1][x1] = 0;
+				map_data.tile[y1][x2] = 0;
+			}
+			else if (val1 == HEART || val2 == HEART )
+			{
+				map_data.tile[y1][x1] = 0;
+				map_data.tile[y1][x2] = 0;
+				checkheart = true;
+			}
 			else
 			{
 				if (val1 != BLANK_TILE || val2 != BLANK_TILE)
@@ -305,7 +375,7 @@ void MainObject::CheckToMap(Map& map_data)
 
 	if (y_pos_ > map_data.max_y_)
 	{
-		come_back_time_ = 60;
+		come_back_time_ = 10;
 	}
 }
 
@@ -463,14 +533,16 @@ void MainObject::HandelInputAction(SDL_Event events, SDL_Renderer* screen , Mix_
 			{
 				p_bullet->set_bullet_dir(BulletObject::DIR_LEFT); 
 				p_bullet->SetRect(this->rect_.x, rect_.y + height_frame_ * 0.25);
+				p_bullet->set_x_val(-20);
 			}
 			else
 			{
 				p_bullet->set_bullet_dir(BulletObject::DIR_RIGHT);
 				p_bullet->SetRect(this->rect_.x + width_frame_ - 20, rect_.y + height_frame_ * 0.25);
+				p_bullet->set_x_val(20);
 			}
-			p_bullet->set_x_val(20); 
-			p_bullet->set_y_val(20);
+ 
+			p_bullet->set_y_val(0);
 			p_bullet->set_is_move(true); 
 
 			p_bullet_list_.push_back(p_bullet); 
