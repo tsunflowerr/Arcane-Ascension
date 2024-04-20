@@ -3,10 +3,6 @@
   "WorkspaceRootPath": "C:\\GameSDL2\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9C215232-6A34-45B5-9E38-DA79AAD581DD}|GameSDL2.vcxproj|C:\\GameSDL2\\MainObject.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{9C215232-6A34-45B5-9E38-DA79AAD581DD}|GameSDL2.vcxproj|solutionrelative:MainObject.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{9C215232-6A34-45B5-9E38-DA79AAD581DD}|GameSDL2.vcxproj|C:\\GameSDL2\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{9C215232-6A34-45B5-9E38-DA79AAD581DD}|GameSDL2.vcxproj|solutionrelative:main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
@@ -15,12 +11,24 @@
       "RelativeMoniker": "D:0:0:{9C215232-6A34-45B5-9E38-DA79AAD581DD}|GameSDL2.vcxproj|solutionrelative:Geometric.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9C215232-6A34-45B5-9E38-DA79AAD581DD}|GameSDL2.vcxproj|C:\\GameSDL2\\MainObject.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{9C215232-6A34-45B5-9E38-DA79AAD581DD}|GameSDL2.vcxproj|solutionrelative:MainObject.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{9C215232-6A34-45B5-9E38-DA79AAD581DD}|GameSDL2.vcxproj|C:\\GameSDL2\\BaseObject.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{9C215232-6A34-45B5-9E38-DA79AAD581DD}|GameSDL2.vcxproj|solutionrelative:BaseObject.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9C215232-6A34-45B5-9E38-DA79AAD581DD}|GameSDL2.vcxproj|C:\\GameSDL2\\ImpTimer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{9C215232-6A34-45B5-9E38-DA79AAD581DD}|GameSDL2.vcxproj|solutionrelative:ImpTimer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9C215232-6A34-45B5-9E38-DA79AAD581DD}|GameSDL2.vcxproj|C:\\GameSDL2\\CommonFunc.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{9C215232-6A34-45B5-9E38-DA79AAD581DD}|GameSDL2.vcxproj|solutionrelative:CommonFunc.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9C215232-6A34-45B5-9E38-DA79AAD581DD}|GameSDL2.vcxproj|C:\\GameSDL2\\MainObject.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{9C215232-6A34-45B5-9E38-DA79AAD581DD}|GameSDL2.vcxproj|solutionrelative:MainObject.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9C215232-6A34-45B5-9E38-DA79AAD581DD}|GameSDL2.vcxproj|C:\\GameSDL2\\MainObject.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{9C215232-6A34-45B5-9E38-DA79AAD581DD}|GameSDL2.vcxproj|solutionrelative:MainObject.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9C215232-6A34-45B5-9E38-DA79AAD581DD}|GameSDL2.vcxproj|C:\\GameSDL2\\PlayerPower.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -47,16 +55,8 @@
       "RelativeMoniker": "D:0:0:{9C215232-6A34-45B5-9E38-DA79AAD581DD}|GameSDL2.vcxproj|solutionrelative:BulletObject.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9C215232-6A34-45B5-9E38-DA79AAD581DD}|GameSDL2.vcxproj|C:\\GameSDL2\\ImpTimer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{9C215232-6A34-45B5-9E38-DA79AAD581DD}|GameSDL2.vcxproj|solutionrelative:ImpTimer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{9C215232-6A34-45B5-9E38-DA79AAD581DD}|GameSDL2.vcxproj|C:\\GameSDL2\\BossObject.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{9C215232-6A34-45B5-9E38-DA79AAD581DD}|GameSDL2.vcxproj|solutionrelative:BossObject.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9C215232-6A34-45B5-9E38-DA79AAD581DD}|GameSDL2.vcxproj|C:\\GameSDL2\\BaseObject.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{9C215232-6A34-45B5-9E38-DA79AAD581DD}|GameSDL2.vcxproj|solutionrelative:BaseObject.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9C215232-6A34-45B5-9E38-DA79AAD581DD}|GameSDL2.vcxproj|C:\\GameSDL2\\FLyThreats.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -126,11 +126,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "ThreatsObject.cpp",
               "DocumentMoniker": "C:\\GameSDL2\\ThreatsObject.cpp",
               "RelativeDocumentMoniker": "ThreatsObject.cpp",
@@ -139,12 +139,11 @@
               "ViewState": "AQIAAEoBAAAAAAAAAIBJwF8BAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-03-16T10:40:06.598Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 2,
               "Title": "BaseObject.h",
               "DocumentMoniker": "C:\\GameSDL2\\BaseObject.h",
               "RelativeDocumentMoniker": "BaseObject.h",
@@ -153,11 +152,12 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-03-17T16:34:45.301Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "Geometric.cpp",
               "DocumentMoniker": "C:\\GameSDL2\\Geometric.cpp",
               "RelativeDocumentMoniker": "Geometric.cpp",
@@ -185,7 +185,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 3,
               "Title": "ImpTimer.h",
               "DocumentMoniker": "C:\\GameSDL2\\ImpTimer.h",
               "RelativeDocumentMoniker": "ImpTimer.h",
@@ -194,17 +194,18 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAATAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-03-11T16:36:40.791Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 5,
               "Title": "MainObject.cpp",
               "DocumentMoniker": "C:\\GameSDL2\\MainObject.cpp",
               "RelativeDocumentMoniker": "MainObject.cpp",
               "ToolTip": "C:\\GameSDL2\\MainObject.cpp",
               "RelativeToolTip": "MainObject.cpp",
-              "ViewState": "AQIAAKwAAAAAAAAAAAASwLsAAAAEAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAALsAAAAEAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-04-10T06:58:23.738Z",
               "IsPinned": true,
@@ -212,20 +213,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "main.cpp",
               "DocumentMoniker": "C:\\GameSDL2\\main.cpp",
               "RelativeDocumentMoniker": "main.cpp",
               "ToolTip": "C:\\GameSDL2\\main.cpp",
               "RelativeToolTip": "main.cpp",
-              "ViewState": "AQIAACYEAAAAAAAAAAAAAPMDAAApAAAA",
+              "ViewState": "AQIAAJ0AAAAAAAAAAAAAAIMAAAAwAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-03-09T17:34:25.085Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "MainObject.h",
               "DocumentMoniker": "C:\\GameSDL2\\MainObject.h",
               "RelativeDocumentMoniker": "MainObject.h",
@@ -233,12 +234,11 @@
               "RelativeToolTip": "MainObject.h",
               "ViewState": "AQIAABoAAAAAAAAAAAAAACYAAAAhAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-03-10T02:18:36.013Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-10T02:18:36.013Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "PlayerPower.h",
               "DocumentMoniker": "C:\\GameSDL2\\PlayerPower.h",
               "RelativeDocumentMoniker": "PlayerPower.h",
@@ -246,12 +246,11 @@
               "RelativeToolTip": "PlayerPower.h",
               "ViewState": "AQIAAAIAAAAAAAAAAAAqwBAAAAAOAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-03-19T03:36:10.409Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-19T03:36:10.409Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "BulletObject.cpp",
               "DocumentMoniker": "C:\\GameSDL2\\BulletObject.cpp",
               "RelativeDocumentMoniker": "BulletObject.cpp",
@@ -263,7 +262,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "TextObject.cpp",
               "DocumentMoniker": "C:\\GameSDL2\\TextObject.cpp",
               "RelativeDocumentMoniker": "TextObject.cpp",
@@ -275,7 +274,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
               "Title": "PlayerPower.cpp",
               "DocumentMoniker": "C:\\GameSDL2\\PlayerPower.cpp",
               "RelativeDocumentMoniker": "PlayerPower.cpp",
@@ -287,7 +286,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 12,
               "Title": "BulletObject.h",
               "DocumentMoniker": "C:\\GameSDL2\\BulletObject.h",
               "RelativeDocumentMoniker": "BulletObject.h",
@@ -299,7 +298,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "BossObject.h",
               "DocumentMoniker": "C:\\GameSDL2\\BossObject.h",
               "RelativeDocumentMoniker": "BossObject.h",
