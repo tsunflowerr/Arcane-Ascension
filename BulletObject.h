@@ -27,6 +27,7 @@ public :
 	{
 		SEPHERE_BULLET = 50 , 
 		LASER_BULLET = 51 , 
+		FIRE_BALL_BULLET= 52 
 	};
 
 	void set_x_val(const int& xVal) { x_val_ = xVal; }

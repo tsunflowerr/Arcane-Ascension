@@ -42,13 +42,16 @@ void PlayerPower::Show(SDL_Renderer* screen)
 
 void PlayerPower::Decrease()
 {
-	number_--; 
+	if (number_ >= 1)
+	{
+		number_--; 
+	}
 	pos_list_.pop_back();
 }
 
 void PlayerPower::InitCrease()
 {
-	number_++; 
+	if (number_ <= 5) number_++; 
 	int last_pos = pos_list_.back(); 
 	last_pos += 30; 
 	pos_list_.push_back(last_pos); 

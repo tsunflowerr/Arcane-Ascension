@@ -12,11 +12,17 @@
 #include "AttackObject.h"
 #include "FLyThreats.h"
 #include <fstream>
+#include <SDL_mixer.h>
 
 BaseObject g_background; 
 BaseObject m_background; 
 BaseObject menu_background;
+BaseObject l_background;
+BaseObject w_background;
 TTF_Font* font_time = NULL; 
+
+
+
 
 bool InitData()
 {
@@ -70,8 +76,10 @@ bool InitData()
 	g_sound_bullet[0] = Mix_LoadWAV("mixer//Fireball+1.wav");
 	g_sound_exp[0] = Mix_LoadWAV("mixer//Explosion.wav"); 
 	g_sound_exp[1] = Mix_LoadWAV("mixer//Explosion.wav"); 
+	get_coin[0] = Mix_LoadWAV("mixer//coin.wav"); 
+	hitted[0] = Mix_LoadWAV("mixer//hitted.wav");
 
-	if (g_sound_exp[0] == NULL || g_sound_bullet[0] == NULL || g_sound_exp[1] == NULL)
+	if (g_sound_exp[0] == NULL || g_sound_bullet[0] == NULL || g_sound_exp[1] == NULL || get_coin[0] == NULL||hitted[0] == NULL )
 	{
 		success = false; 
 	}
@@ -96,13 +104,28 @@ bool LoadmBackground()
 
 bool Loadmenuhighscore()
 {
-	bool ret = menu_background.LoadImg("img//22.png", g_screen);
+	bool ret = menu_background.LoadImg("img//highscore.png", g_screen);
 
 	if (ret == false)
 		return false;
 	return true;
 }
 
+bool LoadLoss()
+{
+	bool ret = l_background.LoadImg("img//lossgame.png", g_screen);
+	if (ret == false)
+		return false;
+	return true;
+}
+
+bool Loadwin()
+{
+	bool ret = w_background.LoadImg("img//wingame.png", g_screen);
+	if (ret == false)
+		return false;
+	return true;
+}
 
 
 int getHighScore() {
@@ -236,8 +259,13 @@ std::vector<ThreatsObject*> MakeThreatList()
 
 int main(int argc, char* argv[])
 {
+
+	
+
+
 	ImpTimer fps_timer;
 	ImpTimer real_time_of_game;
+	bool pause_game = false; 
 	real_time_of_game.start();
 	if (InitData() == false)
 		return -1;
@@ -247,6 +275,22 @@ int main(int argc, char* argv[])
 		return -1;
 	if (Loadmenuhighscore() == false)
 		return -1;
+	if (LoadLoss() == false)
+	{
+		return -1; 
+	}
+	if (Loadwin() == false) return -1; 
+
+	srand(time(NULL)); 
+	Mix_Music* g_music = Mix_LoadMUS("mixer//sound.mp3");
+	if (g_music == NULL)
+	{
+		return -1;
+	}
+
+	Mix_PlayMusic(g_music, -1);
+
+	int hpboss = 20; 
 
 	GameMap game_map;
 	game_map.LoadMap("map/map01.dat");
@@ -281,7 +325,6 @@ int main(int argc, char* argv[])
 	if (!tRet) return -1;
 	exp_threat.set_clip();
 
-	int num_die = 0;
 
 	TextObject time_game;
 	time_game.SetColor(TextObject::WHITE_TEXT);
@@ -299,6 +342,7 @@ int main(int argc, char* argv[])
 	TextObject end; 
 	TextObject highscore; 
 	TextObject highscoreval; 
+	TextObject continuee; 
 
 
 	bool is_quit = false;
@@ -327,7 +371,7 @@ int main(int argc, char* argv[])
 		SDL_GetMouseState(&mouseX, &mouseY);
 
 		start_button.SetText("START");
-		guide_button.SetText("GUIDE");
+		guide_button.SetText("HIGH SCORE");
 		quit_button.SetText("QUIT");
 
 		start_button.LoadFromRenderText(font_time, g_screen);
@@ -349,6 +393,59 @@ int main(int argc, char* argv[])
 		guide_button.LoadFromRenderText(font_time, g_screen);
 		if (mouseX >= 1280 / 2 - 40 && mouseX <= 1280 / 2 - 40 + 90 && mouseY >= 480 - 80 - 15 + 50 && mouseY <= 480 - 80  + 37 - 15 + 50) {
 			guide_button.SetColor(TextObject::BLACK_TEXT);
+			if (g_event.type == SDL_MOUSEBUTTONDOWN) {
+				if (g_event.button.button = SDL_BUTTON_RIGHT)
+				{
+					while (!is_quit) {
+						while (SDL_PollEvent(&g_event) != 0)
+						{
+							if (g_event.type == SDL_QUIT)
+							{
+								is_quit = true;
+							}
+							p_player.HandelInputAction(g_event, g_screen, g_sound_bullet);
+							attack_player.HandelInputAction(g_event, g_screen, g_sound_bullet);
+						}
+
+						//SDL_SetRenderDrawColor(g_screen, 210, 210, 210, 210);
+						//SDL_RenderClear(g_screen);
+
+						menu_background.Render(g_screen, NULL);
+						quit_button.SetText("QUIT");
+
+						int mouseX, mouseY;
+						SDL_GetMouseState(&mouseX, &mouseY);
+
+						int maxscore = getHighScore();
+						std::string maxhighscore = std::to_string(maxscore);
+						std::string strhs("");
+						strhs += maxhighscore;
+
+						highscoreval.SetText(strhs);
+						highscoreval.LoadFromRenderText(font_time, g_screen);
+						highscoreval.RenderText(g_screen, SCREEN_WIDTH * 0.5, SCREEN_HEIGHT / 2);
+
+						quit_button.LoadFromRenderText(font_time, g_screen);
+						if (mouseX >= 1280 / 2 - 40 && mouseX <= 1280 / 2 - 40 + 90 && mouseY >= 480 / 2 - 15 + 120 && mouseY <= 480 / 2 + 37 - 15 + 120) {
+							quit_button.SetColor(TextObject::BLACK_TEXT);
+							if (g_event.type == SDL_MOUSEBUTTONDOWN) {
+								if (g_event.button.button = SDL_BUTTON_RIGHT)
+								{
+									is_quit = true;
+								}
+							}
+						}
+						else {
+							quit_button.SetColor(TextObject::RED_TEXT);
+						}
+						quit_button.RenderText(g_screen, 1280 / 2 - 40 + 5, 480 / 2 + 114);
+
+						SDL_RenderPresent(g_screen);
+						SDL_Delay(10);
+
+					}
+				}
+			}
 
 		}
 		else {
@@ -409,11 +506,87 @@ int main(int argc, char* argv[])
 		game_map.SetMap(map_data);
 		game_map.DrawMap(g_screen);
 		int x = p_player.getheart();
+		int y = p_player.gettrap(); 
 
 		if (x == 1)
 		{
 			player_power.InitCrease();
 		}
+		if (y == 1)
+		{
+			player_power.Decrease() ;
+		}
+		if (p_player.checkfall() == 1)
+		{
+			player_power.Decrease(); 
+
+		}
+
+		if (g_event.type == SDL_KEYDOWN )
+		{
+			if ( g_event.key.keysym.sym = SDLK_ESCAPE )
+				pause_game = true;
+
+		}
+
+
+		while ( pause_game ) {
+			while (SDL_PollEvent(&g_event) != 0)
+			{
+				if (g_event.type == SDL_QUIT)
+				{
+					start = false;
+					is_quit = true;
+				}
+				p_player.HandelInputAction(g_event, g_screen, g_sound_bullet);
+			}
+
+			//SDL_SetRenderDrawColor(g_screen, 210, 210, 210, 210);
+			//SDL_RenderClear(g_screen);
+
+			m_background.Render(g_screen, NULL);
+
+			int mouseX, mouseY;
+			SDL_GetMouseState(&mouseX, &mouseY);
+
+			continuee.SetText("CONTINUE");
+			quit_button.SetText("QUIT");
+
+			continuee.LoadFromRenderText(font_time, g_screen);
+			if (mouseX >= 1280 / 2 - 40 && mouseX <= 1280 / 2 - 40 + 90 && mouseY >= 480 - 80 - 15 && mouseY <= 480 - 80 + 37 - 15) {
+				continuee.SetColor(TextObject::BLACK_TEXT);
+				if (g_event.type == SDL_MOUSEBUTTONDOWN) {
+					if (g_event.button.button = SDL_BUTTON_RIGHT)
+					{
+						pause_game = false ;
+					}
+				}
+			}
+			else {
+				continuee.SetColor(TextObject::RED_TEXT);
+			}
+
+			continuee.RenderText(g_screen, 1280 / 2 - 40, 480 - 80);
+			quit_button.LoadFromRenderText(font_time, g_screen);
+			if (mouseX >= 1280 / 2 - 40 && mouseX <= 1280 / 2 - 40 + 90 && mouseY >= 480 - 15 && mouseY <= 480 + 45 - 15) {
+				quit_button.SetColor(TextObject::BLACK_TEXT);
+				if (g_event.type == SDL_MOUSEBUTTONDOWN) {
+					if (g_event.button.button = SDL_BUTTON_RIGHT)
+					{
+						is_quit = true;
+					}
+				}
+			}
+			else {
+				quit_button.SetColor(TextObject::RED_TEXT);
+			}
+			quit_button.RenderText(g_screen, 1280 / 2 - 40, 480);
+
+			SDL_RenderPresent(g_screen);
+			SDL_Delay(10);
+
+		}
+
 
 
 		//draw geometric 
@@ -429,6 +602,116 @@ int main(int argc, char* argv[])
 
 		player_power.Show(g_screen);
 		player_money.Show(g_screen);
+
+		if ( player_power.getnumber() == 0 ) 
+		{
+			while (!is_quit) {
+				while (SDL_PollEvent(&g_event) != 0)
+				{
+					if (g_event.type == SDL_QUIT)
+					{
+						is_quit = true;
+					}
+					p_player.HandelInputAction(g_event, g_screen, g_sound_bullet);
+					attack_player.HandelInputAction(g_event, g_screen, g_sound_bullet);
+				}
+
+				//SDL_SetRenderDrawColor(g_screen, 210, 210, 210, 210);
+				//SDL_RenderClear(g_screen);
+				updateHighScore(mark_value);
+
+				l_background.Render(g_screen, NULL);
+
+				int mouseX, mouseY;
+				SDL_GetMouseState(&mouseX, &mouseY);
+				quit_button.SetText("QUIT");
+				highscore.SetText("High Score");
+				highscore.LoadFromRenderText(font_time, g_screen);
+				if (mouseX >= 1280 / 2 - 40 && mouseX <= 1280 / 2 - 40 + 90 && mouseY >= 480 - 15 && mouseY <= 480  + 37 - 15) {
+					highscore.SetColor(TextObject::BLACK_TEXT);
+					if (g_event.type == SDL_MOUSEBUTTONDOWN) {
+						if (g_event.button.button = SDL_BUTTON_RIGHT)
+						{
+							break;
+
+						}
+					}
+				}
+				else {
+					highscore.SetColor(TextObject::RED_TEXT);
+				}
+
+				highscore.RenderText(g_screen, 1280 / 2 - 40, 480 );
+
+				quit_button.LoadFromRenderText(font_time, g_screen);
+				if (mouseX >= 1280 / 2 - 40 && mouseX <= 1280 / 2 - 40 + 90 && mouseY >= 480  - 15 + 30 && mouseY <= 480  + 37 - 15 + 30) {
+					quit_button.SetColor(TextObject::BLACK_TEXT);
+					if (g_event.type == SDL_MOUSEBUTTONDOWN) {
+						if (g_event.button.button = SDL_BUTTON_RIGHT)
+						{
+							is_quit = true;
+						}
+					}
+				}
+				else {
+					quit_button.SetColor(TextObject::RED_TEXT);
+				}
+				quit_button.RenderText(g_screen, 1280 / 2 - 40 + 5, 480 + 30);
+
+				SDL_RenderPresent(g_screen);
+				SDL_Delay(10);
+
+			}
+			while (!is_quit) {
+				while (SDL_PollEvent(&g_event) != 0)
+				{
+					if (g_event.type == SDL_QUIT)
+					{
+						is_quit = true;
+					}
+					p_player.HandelInputAction(g_event, g_screen, g_sound_bullet);
+					attack_player.HandelInputAction(g_event, g_screen, g_sound_bullet);
+				}
+
+				//SDL_SetRenderDrawColor(g_screen, 210, 210, 210, 210);
+				//SDL_RenderClear(g_screen);
+
+				menu_background.Render(g_screen, NULL);
+				quit_button.SetText("QUIT");
+
+				int mouseX, mouseY;
+				SDL_GetMouseState(&mouseX, &mouseY);
+
+				int maxscore = getHighScore();
+				std::string maxhighscore = std::to_string(maxscore);
+				std::string strhs("");
+				strhs += maxhighscore;
+
+				highscoreval.SetText(strhs);
+				highscoreval.LoadFromRenderText(font_time, g_screen);
+				highscoreval.RenderText(g_screen, SCREEN_WIDTH * 0.5, SCREEN_HEIGHT / 2);
+
+				quit_button.LoadFromRenderText(font_time, g_screen);
+				if (mouseX >= 1280 / 2 - 40 && mouseX <= 1280 / 2 - 40 + 90 && mouseY >= 480 / 2 - 15 + 120 && mouseY <= 480 / 2 + 37 - 15 + 120) {
+					quit_button.SetColor(TextObject::BLACK_TEXT);
+					if (g_event.type == SDL_MOUSEBUTTONDOWN) {
+						if (g_event.button.button = SDL_BUTTON_RIGHT)
+						{
+							is_quit = true;
+						}
+					}
+				}
+				else {
+					quit_button.SetColor(TextObject::RED_TEXT);
+				}
+				quit_button.RenderText(g_screen, 1280 / 2 - 40 + 5, 480 / 2 + 114);
+
+				SDL_RenderPresent(g_screen);
+				SDL_Delay(10);
+
+			}
+
+		}
 
 		
 		for (int i = 0; i < threats_list.size(); i++)
@@ -465,14 +748,14 @@ int main(int argc, char* argv[])
 					bool bCol2 = SDLCommonFunc::CheckCollision(rect_player, rect_threat);
 					if (bCol2 || bCol1)
 					{
-						num_die++;
-						if (num_die <= 3)
+						if ( player_power.getnumber() > 0 )
 						{
 							p_player.SetRect(0, 0);
-							p_player.set_comeback_time(60);
+							p_player.set_comeback_time(9);
 							SDL_Delay(400);
 							player_power.Decrease();
 							player_power.Render(g_screen);
+							Mix_PlayChannel(-1, hitted[0], 0);
 							continue;
 						}
 						else
@@ -571,14 +854,14 @@ int main(int argc, char* argv[])
 				SDL_Rect rect_threat = f_threat->GetRect();
 				if ( bCol1)
 				{
-					num_die++;
-					if (num_die <= 3)
+					if (player_power.getnumber() > 0)
 					{
 						p_player.SetRect(0, 0);
-						p_player.set_comeback_time(60);
+						p_player.set_comeback_time(9);
 						SDL_Delay(400);
 						player_power.Decrease();
 						player_power.Render(g_screen);
+						Mix_PlayChannel(-1, hitted[0], 0);
 						continue;
 					}
 					else
@@ -719,14 +1002,14 @@ int main(int argc, char* argv[])
 					bool bCol2 = SDLCommonFunc::CheckCollision(rect_player, rect_threat);
 					if (bCol2 || bCol1)
 					{
-						num_die++;
-						if (num_die <= 3)
+						if (player_power.getnumber() > 0)
 						{
 							p_player.SetRect(0, 0);
-							p_player.set_comeback_time(60);
+							p_player.set_comeback_time(9);
 							SDL_Delay(400);
 							player_power.Decrease();
 							player_power.Render(g_screen);
+							Mix_PlayChannel(-1, hitted[0], 0);
 							continue;
 						}
 						else
@@ -772,127 +1055,126 @@ int main(int argc, char* argv[])
 
 							if (bCol)
 							{
-								for (int ex = 0; ex < 8; ex++)
-								{
-									int x_pos = p_bullet->GetRect().x - frame_exp_width * 0.5;
-									int y_pos = p_bullet->GetRect().y - frame_exp_height * 0.5;
-
-									exp_threat.set_frame(ex);
-									exp_threat.SetRect(x_pos, y_pos);
-									exp_threat.Show(g_screen);
-								}
-
+								hpboss--; 
 								p_player.RemoveBullet(r);
-								obj_threat->Free();
-								boss_list.erase(boss_list.begin() + t);
-								while (!is_quit ) {
-									while (SDL_PollEvent(&g_event) != 0)
+								if (hpboss == 0)
+								{
+									for (int ex = 0; ex < 8; ex++)
 									{
-										if (g_event.type == SDL_QUIT)
+										int x_pos = p_bullet->GetRect().x - frame_exp_width * 0.5;
+										int y_pos = p_bullet->GetRect().y - frame_exp_height * 0.5;
+
+										exp_threat.set_frame(ex);
+										exp_threat.SetRect(x_pos, y_pos);
+										exp_threat.Show(g_screen);
+									}
+									obj_threat->Free();
+									boss_list.erase(boss_list.begin() + t);
+									while (!is_quit) {
+										while (SDL_PollEvent(&g_event) != 0)
 										{
-											is_quit = true;
-										}
-										p_player.HandelInputAction(g_event, g_screen, g_sound_bullet);
-										attack_player.HandelInputAction(g_event, g_screen, g_sound_bullet);
-									}
-
-									//SDL_SetRenderDrawColor(g_screen, 210, 210, 210, 210);
-									//SDL_RenderClear(g_screen);
-									updateHighScore(mark_value); 
-
-									m_background.Render(g_screen, NULL);
-
-									int mouseX, mouseY;
-									SDL_GetMouseState(&mouseX, &mouseY);
-									end.SetText("YOU WIN");
-									quit_button.SetText("QUIT");
-									highscore.SetText("High Score");
-									end.LoadFromRenderText(font_time, g_screen);
-									end.SetColor(TextObject::BLACK_TEXT); 
-									end.RenderText(g_screen, 1280 / 4, SCREEN_HEIGHT /2 );
-									highscore.LoadFromRenderText(font_time, g_screen);
-									if (mouseX >= 1280 / 2 - 40 && mouseX <= 1280 / 2 - 40 + 90 && mouseY >= 480 / 2 - 15 && mouseY <= 480 / 2 + 37 - 15) {
-										highscore.SetColor(TextObject::BLACK_TEXT);
-										if (g_event.type == SDL_MOUSEBUTTONDOWN) {
-											if (g_event.button.button = SDL_BUTTON_RIGHT)
-											{
-												break; 
-
-											}
-										}
-									}
-									else {
-										highscore.SetColor(TextObject::RED_TEXT);
-									}
-
-									highscore.RenderText(g_screen, 1280 / 2 - 40, 480 / 2);
-
-									quit_button.LoadFromRenderText(font_time, g_screen);
-									if (mouseX >= 1280 / 2 - 40 && mouseX <= 1280 / 2 - 40 + 90 && mouseY >= 480 / 2 - 15 + 120 && mouseY <= 480 / 2 + 37 - 15 + 120) {
-										quit_button.SetColor(TextObject::BLACK_TEXT);
-										if (g_event.type == SDL_MOUSEBUTTONDOWN) {
-											if (g_event.button.button = SDL_BUTTON_RIGHT)
+											if (g_event.type == SDL_QUIT)
 											{
 												is_quit = true;
 											}
+											p_player.HandelInputAction(g_event, g_screen, g_sound_bullet);
+											attack_player.HandelInputAction(g_event, g_screen, g_sound_bullet);
 										}
-									}
-									else {
-										quit_button.SetColor(TextObject::RED_TEXT);
-									}
-									quit_button.RenderText(g_screen, 1280 / 2 - 40 + 5, 480 / 2 + 114);
 
-									SDL_RenderPresent(g_screen);
-									SDL_Delay(10);
+										//SDL_SetRenderDrawColor(g_screen, 210, 210, 210, 210);
+										//SDL_RenderClear(g_screen);
+										updateHighScore(mark_value);
 
-								}
-								while (!is_quit) {
-									while (SDL_PollEvent(&g_event) != 0)
-									{
-										if (g_event.type == SDL_QUIT)
+										l_background.Render(g_screen, NULL);
+
+										int mouseX, mouseY;
+										SDL_GetMouseState(&mouseX, &mouseY);
+										quit_button.SetText("QUIT");
+										highscore.SetText("High Score");
+										highscore.LoadFromRenderText(font_time, g_screen);
+										if (mouseX >= 1280 / 2 - 40 && mouseX <= 1280 / 2 - 40 + 90 && mouseY >= 480 / 2 - 15 && mouseY <= 480 / 2 + 37 - 15) {
+											highscore.SetColor(TextObject::BLACK_TEXT);
+											if (g_event.type == SDL_MOUSEBUTTONDOWN) {
+												if (g_event.button.button = SDL_BUTTON_RIGHT)
+												{
+													break;
+
+												}
+											}
+										}
+										else {
+											highscore.SetColor(TextObject::RED_TEXT);
+										}
+
+										highscore.RenderText(g_screen, 1280 / 2 - 40, 480 / 2);
+
+										quit_button.LoadFromRenderText(font_time, g_screen);
+										if (mouseX >= 1280 / 2 - 40 && mouseX <= 1280 / 2 - 40 + 90 && mouseY >= 480 / 2 - 15 + 120 && mouseY <= 480 / 2 + 37 - 15 + 120) {
+											quit_button.SetColor(TextObject::BLACK_TEXT);
+											if (g_event.type == SDL_MOUSEBUTTONDOWN) {
+												if (g_event.button.button = SDL_BUTTON_RIGHT)
+												{
+													is_quit = true;
+												}
+											}
+										}
+										else {
+											quit_button.SetColor(TextObject::RED_TEXT);
+										}
+										quit_button.RenderText(g_screen, 1280 / 2 - 40 + 5, 480 / 2 + 114);
+
+										SDL_RenderPresent(g_screen);
+										SDL_Delay(10);
+
+									}
+									while (!is_quit) {
+										while (SDL_PollEvent(&g_event) != 0)
 										{
-											is_quit = true;
-										}
-										p_player.HandelInputAction(g_event, g_screen, g_sound_bullet);
-										attack_player.HandelInputAction(g_event, g_screen, g_sound_bullet);
-									}
-
-									//SDL_SetRenderDrawColor(g_screen, 210, 210, 210, 210);
-									//SDL_RenderClear(g_screen);
-
-									menu_background.Render(g_screen, NULL);
-									quit_button.SetText("QUIT");
-
-									int mouseX, mouseY;
-									SDL_GetMouseState(&mouseX, &mouseY);
-
-									int maxscore = getHighScore();
-									std::string maxhighscore = std::to_string(maxscore);
-									std::string strhs("");
-									strhs += maxhighscore;
-
-									highscoreval.SetText(strhs);
-									highscoreval.LoadFromRenderText(font_time, g_screen);
-									highscoreval.RenderText(g_screen, SCREEN_WIDTH * 0.5, SCREEN_HEIGHT / 2);
-
-									quit_button.LoadFromRenderText(font_time, g_screen);
-									if (mouseX >= 1280 / 2 - 40 && mouseX <= 1280 / 2 - 40 + 90 && mouseY >= 480 / 2 - 15 + 120 && mouseY <= 480 / 2 + 37 - 15 + 120) {
-										quit_button.SetColor(TextObject::BLACK_TEXT);
-										if (g_event.type == SDL_MOUSEBUTTONDOWN) {
-											if (g_event.button.button = SDL_BUTTON_RIGHT)
+											if (g_event.type == SDL_QUIT)
 											{
 												is_quit = true;
 											}
+											p_player.HandelInputAction(g_event, g_screen, g_sound_bullet);
+											attack_player.HandelInputAction(g_event, g_screen, g_sound_bullet);
 										}
-									}
-									else {
-										quit_button.SetColor(TextObject::RED_TEXT);
-									}
-									quit_button.RenderText(g_screen, 1280 / 2 - 40 + 5, 480 / 2 + 114);
 
-									SDL_RenderPresent(g_screen);
-									SDL_Delay(10);
+										//SDL_SetRenderDrawColor(g_screen, 210, 210, 210, 210);
+										//SDL_RenderClear(g_screen);
 
+										menu_background.Render(g_screen, NULL);
+										quit_button.SetText("QUIT");
+
+										int mouseX, mouseY;
+										SDL_GetMouseState(&mouseX, &mouseY);
+
+										int maxscore = getHighScore();
+										std::string maxhighscore = std::to_string(maxscore);
+										std::string strhs("");
+										strhs += maxhighscore;
+
+										highscoreval.SetText(strhs);
+										highscoreval.LoadFromRenderText(font_time, g_screen);
+										highscoreval.RenderText(g_screen, SCREEN_WIDTH * 0.5, SCREEN_HEIGHT / 2);
+
+										quit_button.LoadFromRenderText(font_time, g_screen);
+										if (mouseX >= 1280 / 2 - 40 && mouseX <= 1280 / 2 - 40 + 90 && mouseY >= 480 / 2 - 15 + 120 && mouseY <= 480 / 2 + 37 - 15 + 120) {
+											quit_button.SetColor(TextObject::BLACK_TEXT);
+											if (g_event.type == SDL_MOUSEBUTTONDOWN) {
+												if (g_event.button.button = SDL_BUTTON_RIGHT)
+												{
+													is_quit = true;
+												}
+											}
+										}
+										else {
+											quit_button.SetColor(TextObject::RED_TEXT);
+										}
+										quit_button.RenderText(g_screen, 1280 / 2 - 40 + 5, 480 / 2 + 114);
+
+										SDL_RenderPresent(g_screen);
+										SDL_Delay(10);
+
+									}
 								}
 
 
@@ -917,6 +1199,10 @@ int main(int argc, char* argv[])
 				if (delay_time >= 0) SDL_Delay(delay_time);
 			}
 		}
+
+		Mix_HaltMusic();
+		Mix_FreeMusic(g_music);
+		Mix_CloseAudio();
 
 		for (int i = 0; i < threats_list.size(); i++)
 		{

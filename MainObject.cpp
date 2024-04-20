@@ -9,7 +9,7 @@ MainObject::MainObject()
 	x_pos_ = 0; 
 	y_pos_ = 0; 
 	x_val_ = 0; 
-	y_val_ = 0; 
+	y_val_ = 50; 
 	width_frame_ = 0; 
 	height_frame_ = 0; 
 	status_ = WALK_NONE ;
@@ -28,6 +28,8 @@ MainObject::MainObject()
 	time_attack = 0; 
 	delay_attack = 0; 
 	checkheart = 0; 
+	checktrap = 0; 
+	fall = 0;
 	
 }
 
@@ -113,7 +115,8 @@ void MainObject::CheckToMap(Map& map_data)
 	int x2 = 0;
 	int y1 = 0;
 	int y2 = 0;
-	
+	checkheart = 0; 
+	checktrap = 0; 
 
 	int height_min = height_frame_ < TILE_SIZE ? height_frame_ : TILE_SIZE;
 
@@ -137,7 +140,7 @@ void MainObject::CheckToMap(Map& map_data)
 				IncreaseMoney();
 			}
 			 
-			else if ((val1 == LUCKKY_BOX) || (val2 == LUCKKY_BOX))
+			else if ((val1 == LUCKKY_BOX))
 			{
 				if (luckky_box != 0)
 				{
@@ -149,26 +152,51 @@ void MainObject::CheckToMap(Map& map_data)
 				}
 				else 
 				{
-					map_data.tile[y1][x2] = 0; 
-					map_data.tile[y2][x2] = 0; 
+					map_data.tile[y1][x2] = rand() % 4 + 11; 
 				}
 				std::cout << luckky_box; 
+			}
+			else if ((val2 == LUCKKY_BOX))
+			{
+				if (luckky_box != 0)
+				{
+					luckky_box--;
+					x_pos_ = x2 * TILE_SIZE;
+					x_pos_ -= width_frame_ + 1;
+					x_val_ = 0;
+
+				}
+				else
+				{
+					map_data.tile[y2][x2] = rand() % 4 + 11;
+				}
+				std::cout << luckky_box;
 			}
 			else if ((val1 == TRAP) || (val2 == TRAP ))
 			{
 				map_data.tile[y1][x2] = 0;
 				map_data.tile[y2][x2] = 0;
+				checktrap = 1; 
 			}
 			else if ((val1 == TRAP2) || (val2 == TRAP2))
 			{
 				map_data.tile[y1][x2] = 0;
 				map_data.tile[y2][x2] = 0;
+				checktrap = 1; 
 			}
 			else if ((val1 == HEART) || (val2 == HEART) )
 			{
 				map_data.tile[y1][x2] = 0;
 				map_data.tile[y2][x2] = 0;
 				checkheart = 1;
+				
+			}
+			else if ((val1 == MONEY) || (val2 == MONEY ))
+			{
+				map_data.tile[y1][x2] = 0;
+				map_data.tile[y2][x2] = 0;
+				IncreaseMoney(); 
+
 			}
 			else
 			{
@@ -192,7 +220,7 @@ void MainObject::CheckToMap(Map& map_data)
 				map_data.tile[y2][x1] = 0;
 				IncreaseMoney();
 			}
-			else if ((val1 == LUCKKY_BOX) || (val2 == LUCKKY_BOX))
+			else if ((val1 == LUCKKY_BOX))
 			{
 				if (luckky_box != 0)
 				{
@@ -202,21 +230,36 @@ void MainObject::CheckToMap(Map& map_data)
 				}
 				else  
 				{
-					map_data.tile[y1][x1] = 0;
-					map_data.tile[y2][x1] = 0;
+					map_data.tile[y1][x1] = rand() % 4 + 11; 
 				}
 				std::cout << luckky_box; 
+			}
+			else if ((val2 == LUCKKY_BOX))
+			{
+				if (luckky_box != 0)
+				{
+					luckky_box--;
+					x_pos_ = (x1 + 1) * TILE_SIZE;
+					x_val_ = 0;
+				}
+				else
+				{
+					map_data.tile[y2][x1] = rand() % 4 + 11;
+				}
+				std::cout << luckky_box;
 			}
 			else if (val1 == TRAP || (val2 == TRAP ))
 			{
 				map_data.tile[y1][x1] = 0;
 				map_data.tile[y2][x1] = 0;
+				checktrap = 1;
 
 			}
 			else if (val1 == TRAP2 || (val2 == TRAP2))
 			{
 				map_data.tile[y1][x1] = 0;
 				map_data.tile[y2][x1] = 0;
+				checktrap = 1;
 
 			}
 			else if (val1 == HEART || (val2 == HEART ))
@@ -224,6 +267,13 @@ void MainObject::CheckToMap(Map& map_data)
 				map_data.tile[y1][x1] = 0;
 				map_data.tile[y2][x1] = 0;
 				checkheart = 1;
+
+			}
+			else if (val1 == MONEY || (val2 == MONEY ))
+			{
+				map_data.tile[y1][x1] = 0;
+				map_data.tile[y2][x1] = 0;
+				IncreaseMoney(); 
 
 			}
 			else
@@ -256,7 +306,7 @@ void MainObject::CheckToMap(Map& map_data)
 				map_data.tile[y2][x2] = 0;
 				IncreaseMoney(); 
 			}
-			else if ((val1 == LUCKKY_BOX) || (val2 == LUCKKY_BOX))
+			else if ((val1 == LUCKKY_BOX))
 			{
 				if (luckky_box != 0)
 				{
@@ -272,26 +322,55 @@ void MainObject::CheckToMap(Map& map_data)
 				}
 				if (luckky_box == 0)
 				{
-					map_data.tile[y2][x1] = 0;
-					map_data.tile[y2][x2] = 0;
+					map_data.tile[y2][x1] = rand() % 4 + 11; 
+
 				}
 				std::cout << luckky_box; 
+			}
+			else if ((val2 == LUCKKY_BOX))
+			{
+				if (luckky_box != 0)
+				{
+					luckky_box--;
+					y_pos_ = y2 * TILE_SIZE;
+					y_pos_ -= (height_frame_ + 1);
+					y_val_ = 0;
+					on_ground_ = true;
+					if (status_ == WALK_NONE)
+					{
+						status_ = WALK_NONE;
+					}
+				}
+				if (luckky_box == 0)
+				{
+					map_data.tile[y2][x2] = rand() % 4 + 11 ;
+
+				}
+				std::cout << luckky_box;
 			}
 			else if (val1 == TRAP || val2 == TRAP )
 			{
 				map_data.tile[y2][x1] = 0;
 				map_data.tile[y2][x2] = 0;
+				checktrap = 1;
 			}
 			else if (val1 == TRAP2 || val2 == TRAP2)
 			{
 				map_data.tile[y2][x1] = 0;
 				map_data.tile[y2][x2] = 0;
+				checktrap = 1;
 			}
 			else if (val1 == HEART || val2 == HEART )
 			{
 				map_data.tile[y2][x1] = 0;
 				map_data.tile[y2][x2] = 0;
 				checkheart = 1;
+			}
+			else if (val1 == MONEY || val2 == MONEY )
+			{
+				map_data.tile[y2][x1] = 0;
+				map_data.tile[y2][x2] = 0;
+				IncreaseMoney(); 
 			}
 			else
 			{
@@ -319,7 +398,7 @@ void MainObject::CheckToMap(Map& map_data)
 				map_data.tile[y1][x2] = 0;
 				IncreaseMoney(); 
 			}
-			else if ((val1 == LUCKKY_BOX) || (val2 == LUCKKY_BOX))
+			else if ((val1 == LUCKKY_BOX))
 			{
 				if (luckky_box != 0){
 					luckky_box--; 
@@ -328,26 +407,46 @@ void MainObject::CheckToMap(Map& map_data)
 				}
 				else 
 				{
-					map_data.tile[y1][x1] = 0;
-					map_data.tile[y1][x2] = 0;
+					map_data.tile[y1][x1] = rand() % 4 + 11;
 				}
 				std::cout << luckky_box; 
+			}
+			else if ((val2 == LUCKKY_BOX))
+			{
+				if (luckky_box != 0) {
+					luckky_box--;
+					y_pos_ = (y1 + 1) * TILE_SIZE;
+					y_val_ = 0;
+				}
+				else
+				{
+					map_data.tile[y1][x2] = rand() % 4 + 11;
+				}
+				std::cout << luckky_box;
 			}
 			else if ( val1 == TRAP || val2 == TRAP )
 			{
 				map_data.tile[y1][x1] = 0;
 				map_data.tile[y1][x2] = 0;
+				checktrap = 1;
 			}
 			else if (val1 == TRAP2 || val2 == TRAP2)
 			{
 				map_data.tile[y1][x1] = 0;
 				map_data.tile[y1][x2] = 0;
+				checktrap = 1;
 			}
 			else if (val1 == HEART || val2 == HEART )
 			{
 				map_data.tile[y1][x1] = 0;
 				map_data.tile[y1][x2] = 0;
-				checkheart = true;
+				checkheart = 1;
+			}
+			else if (val1 == MONEY || val2 == MONEY )
+			{
+				map_data.tile[y1][x1] = 0;
+				map_data.tile[y1][x2] = 0;
+				IncreaseMoney(); 
 			}
 			else
 			{
@@ -375,6 +474,7 @@ void MainObject::CheckToMap(Map& map_data)
 
 	if (y_pos_ > map_data.max_y_)
 	{
+
 		come_back_time_ = 10;
 	}
 }
@@ -523,7 +623,7 @@ void MainObject::HandelInputAction(SDL_Event events, SDL_Renderer* screen , Mix_
 		{
 			input_type_.jump_ = 1;
 		}
-		else if (events.button.button == SDL_BUTTON_LEFT || events.key.keysym.sym == SDLK_SPACE   )
+		else if (events.button.button == SDLK_j || events.key.keysym.sym == SDLK_SPACE   )
 		{
 			BulletObject* p_bullet = new BulletObject(); 
 			p_bullet->set_bullet_type(BulletObject::SEPHERE_BULLET);
@@ -624,9 +724,10 @@ void MainObject::DoPlayer(Map& map_data)
 		CheckToMap(map_data);
 		CenterEntityOnMap(map_data);
 	}
-
 	if (come_back_time_ > 0)
 	{
+		if (come_back_time_ == 10) fall = 1; 
+		else fall = 0; 
 		come_back_time_--; 
 		if (come_back_time_ == 0)
 		{

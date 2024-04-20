@@ -10,7 +10,7 @@
 
 #define GRAVITY_SPEED 0.8 
 #define MAX_FALL_SPEED 10 
-#define PLAYER_SPEED 6
+#define PLAYER_SPEED 8
 #define PLAYER_JUMP_VALUE 20
 
 class MainObject : public BaseObject
@@ -57,6 +57,8 @@ public :
 	float getxpos() { return x_pos_;  }
 	float getypos() { return y_pos_;  }
 	int getheart() { return checkheart; }
+	int gettrap() { return checktrap;  }
+	int checkfall() { return fall;  }
 
 private:
 
@@ -90,7 +92,9 @@ private:
 	
 
 	int come_back_time_; 
-	bool checkheart; 
+	int checkheart; 
+	int checktrap; 
+	int fall; 
 
 };
 

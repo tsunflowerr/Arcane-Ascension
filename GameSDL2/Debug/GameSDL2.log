@@ -1,40 +1,195 @@
-﻿  MainObject.cpp
-C:\GameSDL2\CommonFunc.h(59,2): warning C4091: 'typedef ': ignored on left of 'Input' when no variable is declared
+﻿  AttackObject.cpp
+C:\GameSDL2\CommonFunc.h(62,2): warning C4091: 'typedef ': ignored on left of 'Input' when no variable is declared
+  (compiling source file 'AttackObject.cpp')
+  
+C:\GameSDL2\CommonFunc.h(74,2): warning C4091: 'typedef ': ignored on left of 'Map' when no variable is declared
+  (compiling source file 'AttackObject.cpp')
+  
+C:\GameSDL2\AttackObject.h(56,62): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
+  (compiling source file 'AttackObject.cpp')
+  
+C:\GameSDL2\AttackObject.h(56,78): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
+  (compiling source file 'AttackObject.cpp')
+  
+C:\GameSDL2\MainObject.h(13,1): warning C4005: 'PLAYER_SPEED': macro redefinition
+  (compiling source file 'AttackObject.cpp')
+  C:\GameSDL2\AttackObject.h(13,1):
+  see previous definition of 'PLAYER_SPEED'
+  
+C:\GameSDL2\AttackObject.cpp(324,22): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\GameSDL2\AttackObject.cpp(325,22): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  BaseObject.cpp
+C:\GameSDL2\CommonFunc.h(62,2): warning C4091: 'typedef ': ignored on left of 'Input' when no variable is declared
+  (compiling source file 'BaseObject.cpp')
+  
+C:\GameSDL2\CommonFunc.h(74,2): warning C4091: 'typedef ': ignored on left of 'Map' when no variable is declared
+  (compiling source file 'BaseObject.cpp')
+  
+  BossObject.cpp
+C:\GameSDL2\CommonFunc.h(62,2): warning C4091: 'typedef ': ignored on left of 'Input' when no variable is declared
+  (compiling source file 'BossObject.cpp')
+  
+C:\GameSDL2\CommonFunc.h(74,2): warning C4091: 'typedef ': ignored on left of 'Map' when no variable is declared
+  (compiling source file 'BossObject.cpp')
+  
+C:\GameSDL2\BossObject.h(21,36): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'BossObject.cpp')
+  
+C:\GameSDL2\BossObject.h(22,36): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'BossObject.cpp')
+  
+C:\GameSDL2\BossObject.cpp(81,26): warning C4305: '+=': truncation from 'double' to 'float'
+C:\GameSDL2\BossObject.cpp(175,25): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\GameSDL2\BossObject.cpp(176,44): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\GameSDL2\BossObject.cpp(208,25): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\GameSDL2\BossObject.cpp(209,45): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\GameSDL2\BossObject.cpp(238,12): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+C:\GameSDL2\BossObject.cpp(239,12): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+C:\GameSDL2\BossObject.cpp(294,20): warning C4018: '<': signed/unsigned mismatch
+  BulletObject.cpp
+C:\GameSDL2\CommonFunc.h(62,2): warning C4091: 'typedef ': ignored on left of 'Input' when no variable is declared
+  (compiling source file 'BulletObject.cpp')
+  
+C:\GameSDL2\CommonFunc.h(74,2): warning C4091: 'typedef ': ignored on left of 'Map' when no variable is declared
+  (compiling source file 'BulletObject.cpp')
+  
+C:\GameSDL2\BulletObject.cpp(62,33): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\GameSDL2\BulletObject.cpp(63,33): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  CommonFunc.cpp
+C:\GameSDL2\CommonFunc.h(62,2): warning C4091: 'typedef ': ignored on left of 'Input' when no variable is declared
+  (compiling source file 'CommonFunc.cpp')
+  
+C:\GameSDL2\CommonFunc.h(74,2): warning C4091: 'typedef ': ignored on left of 'Map' when no variable is declared
+  (compiling source file 'CommonFunc.cpp')
+  
+  ExplotionObject.cpp
+C:\GameSDL2\CommonFunc.h(62,2): warning C4091: 'typedef ': ignored on left of 'Input' when no variable is declared
+  (compiling source file 'ExplotionObject.cpp')
+  
+C:\GameSDL2\CommonFunc.h(74,2): warning C4091: 'typedef ': ignored on left of 'Map' when no variable is declared
+  (compiling source file 'ExplotionObject.cpp')
+  
+  FLyThreats.cpp
+C:\GameSDL2\CommonFunc.h(62,2): warning C4091: 'typedef ': ignored on left of 'Input' when no variable is declared
+  (compiling source file 'FLyThreats.cpp')
+  
+C:\GameSDL2\CommonFunc.h(74,2): warning C4091: 'typedef ': ignored on left of 'Map' when no variable is declared
+  (compiling source file 'FLyThreats.cpp')
+  
+C:\GameSDL2\FLyThreats.h(21,36): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'FLyThreats.cpp')
+  
+C:\GameSDL2\FLyThreats.h(22,36): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'FLyThreats.cpp')
+  
+C:\GameSDL2\FLyThreats.cpp(175,25): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\GameSDL2\FLyThreats.cpp(176,44): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\GameSDL2\FLyThreats.cpp(208,25): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\GameSDL2\FLyThreats.cpp(209,45): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\GameSDL2\FLyThreats.cpp(238,12): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+C:\GameSDL2\FLyThreats.cpp(239,12): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+C:\GameSDL2\FLyThreats.cpp(297,20): warning C4018: '<': signed/unsigned mismatch
+  Geometric.cpp
+C:\GameSDL2\CommonFunc.h(62,2): warning C4091: 'typedef ': ignored on left of 'Input' when no variable is declared
+  (compiling source file 'Geometric.cpp')
+  
+C:\GameSDL2\CommonFunc.h(74,2): warning C4091: 'typedef ': ignored on left of 'Map' when no variable is declared
+  (compiling source file 'Geometric.cpp')
+  
+C:\GameSDL2\Geomeric.h(17,2): warning C4091: 'typedef ': ignored on left of 'GeometricFormat' when no variable is declared
+  (compiling source file 'Geometric.cpp')
+  
+C:\GameSDL2\Geomeric.h(26,2): warning C4091: 'typedef ': ignored on left of 'ColorData' when no variable is declared
+  (compiling source file 'Geometric.cpp')
+  
+  ImpTimer.cpp
+C:\GameSDL2\CommonFunc.h(62,2): warning C4091: 'typedef ': ignored on left of 'Input' when no variable is declared
+  (compiling source file 'ImpTimer.cpp')
+  
+C:\GameSDL2\CommonFunc.h(74,2): warning C4091: 'typedef ': ignored on left of 'Map' when no variable is declared
+  (compiling source file 'ImpTimer.cpp')
+  
+  MainObject.cpp
+C:\GameSDL2\CommonFunc.h(62,2): warning C4091: 'typedef ': ignored on left of 'Input' when no variable is declared
   (compiling source file 'MainObject.cpp')
   
-C:\GameSDL2\CommonFunc.h(71,2): warning C4091: 'typedef ': ignored on left of 'Map' when no variable is declared
+C:\GameSDL2\CommonFunc.h(74,2): warning C4091: 'typedef ': ignored on left of 'Map' when no variable is declared
   (compiling source file 'MainObject.cpp')
   
-C:\GameSDL2\MainObject.cpp(120,25): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\GameSDL2\MainObject.cpp(121,44): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\GameSDL2\MainObject.cpp(123,16): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\GameSDL2\MainObject.cpp(124,33): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\GameSDL2\MainObject.cpp(145,18): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\GameSDL2\MainObject.cpp(177,18): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\GameSDL2\MainObject.cpp(200,24): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\GameSDL2\MainObject.cpp(233,24): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\GameSDL2\MainObject.cpp(241,16): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\GameSDL2\MainObject.cpp(242,28): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\GameSDL2\MainObject.cpp(244,25): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\GameSDL2\MainObject.cpp(245,45): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\GameSDL2\MainObject.cpp(264,18): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\GameSDL2\MainObject.cpp(300,18): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\GameSDL2\MainObject.cpp(326,24): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\GameSDL2\MainObject.cpp(356,24): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\GameSDL2\MainObject.cpp(373,43): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\GameSDL2\MainObject.cpp(400,20): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\GameSDL2\MainObject.cpp(401,20): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\GameSDL2\MainObject.cpp(535,46): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
-C:\GameSDL2\MainObject.cpp(541,66): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
-C:\GameSDL2\MainObject.cpp(555,20): warning C4018: '<': signed/unsigned mismatch
-C:\GameSDL2\MainObject.cpp(599,16): warning C4305: '+=': truncation from 'double' to 'float'
-C:\GameSDL2\MainObject.cpp(652,29): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\GameSDL2\MainObject.cpp(662,29): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\GameSDL2\MainObject.cpp(123,25): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\GameSDL2\MainObject.cpp(124,44): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\GameSDL2\MainObject.cpp(126,16): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\GameSDL2\MainObject.cpp(127,33): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\GameSDL2\MainObject.cpp(148,18): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\GameSDL2\MainObject.cpp(164,18): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\GameSDL2\MainObject.cpp(205,18): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\GameSDL2\MainObject.cpp(228,24): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\GameSDL2\MainObject.cpp(242,24): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\GameSDL2\MainObject.cpp(283,24): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\GameSDL2\MainObject.cpp(291,16): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\GameSDL2\MainObject.cpp(292,28): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\GameSDL2\MainObject.cpp(294,25): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\GameSDL2\MainObject.cpp(295,45): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\GameSDL2\MainObject.cpp(314,18): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\GameSDL2\MainObject.cpp(335,18): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\GameSDL2\MainObject.cpp(379,18): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\GameSDL2\MainObject.cpp(405,24): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\GameSDL2\MainObject.cpp(418,24): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\GameSDL2\MainObject.cpp(455,24): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\GameSDL2\MainObject.cpp(472,43): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\GameSDL2\MainObject.cpp(500,20): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\GameSDL2\MainObject.cpp(501,20): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\GameSDL2\MainObject.cpp(635,46): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
+C:\GameSDL2\MainObject.cpp(641,66): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
+C:\GameSDL2\MainObject.cpp(655,20): warning C4018: '<': signed/unsigned mismatch
+C:\GameSDL2\MainObject.cpp(699,16): warning C4305: '+=': truncation from 'double' to 'float'
+C:\GameSDL2\MainObject.cpp(753,29): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\GameSDL2\MainObject.cpp(763,29): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  PlayerPower.cpp
+C:\GameSDL2\CommonFunc.h(62,2): warning C4091: 'typedef ': ignored on left of 'Input' when no variable is declared
+  (compiling source file 'PlayerPower.cpp')
+  
+C:\GameSDL2\CommonFunc.h(74,2): warning C4091: 'typedef ': ignored on left of 'Map' when no variable is declared
+  (compiling source file 'PlayerPower.cpp')
+  
+C:\GameSDL2\PlayerPower.cpp(35,20): warning C4018: '<': signed/unsigned mismatch
+  TextObject.cpp
+C:\GameSDL2\CommonFunc.h(62,2): warning C4091: 'typedef ': ignored on left of 'Input' when no variable is declared
+  (compiling source file 'TextObject.cpp')
+  
+C:\GameSDL2\CommonFunc.h(74,2): warning C4091: 'typedef ': ignored on left of 'Map' when no variable is declared
+  (compiling source file 'TextObject.cpp')
+  
+  ThreatsObject.cpp
+C:\GameSDL2\CommonFunc.h(62,2): warning C4091: 'typedef ': ignored on left of 'Input' when no variable is declared
+  (compiling source file 'ThreatsObject.cpp')
+  
+C:\GameSDL2\CommonFunc.h(74,2): warning C4091: 'typedef ': ignored on left of 'Map' when no variable is declared
+  (compiling source file 'ThreatsObject.cpp')
+  
+C:\GameSDL2\ThreatsObject.cpp(101,20): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\GameSDL2\ThreatsObject.cpp(102,20): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\GameSDL2\ThreatsObject.cpp(196,25): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\GameSDL2\ThreatsObject.cpp(197,44): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\GameSDL2\ThreatsObject.cpp(199,16): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\GameSDL2\ThreatsObject.cpp(200,33): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\GameSDL2\ThreatsObject.cpp(228,16): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\GameSDL2\ThreatsObject.cpp(229,28): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\GameSDL2\ThreatsObject.cpp(231,25): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\GameSDL2\ThreatsObject.cpp(232,45): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\GameSDL2\ThreatsObject.cpp(362,20): warning C4018: '<': signed/unsigned mismatch
+  game_map.cpp
+C:\GameSDL2\CommonFunc.h(62,2): warning C4091: 'typedef ': ignored on left of 'Input' when no variable is declared
+  (compiling source file 'game_map.cpp')
+  
+C:\GameSDL2\CommonFunc.h(74,2): warning C4091: 'typedef ': ignored on left of 'Map' when no variable is declared
+  (compiling source file 'game_map.cpp')
+  
   main.cpp
-C:\GameSDL2\CommonFunc.h(59,2): warning C4091: 'typedef ': ignored on left of 'Input' when no variable is declared
+C:\GameSDL2\CommonFunc.h(62,2): warning C4091: 'typedef ': ignored on left of 'Input' when no variable is declared
   (compiling source file 'main.cpp')
   
-C:\GameSDL2\CommonFunc.h(71,2): warning C4091: 'typedef ': ignored on left of 'Map' when no variable is declared
+C:\GameSDL2\CommonFunc.h(74,2): warning C4091: 'typedef ': ignored on left of 'Map' when no variable is declared
   (compiling source file 'main.cpp')
   
 C:\GameSDL2\Geomeric.h(17,2): warning C4091: 'typedef ': ignored on left of 'GeometricFormat' when no variable is declared
@@ -81,37 +236,40 @@ C:\GameSDL2\FLyThreats.h(21,36): warning C4244: '=': conversion from 'int' to 'f
 C:\GameSDL2\FLyThreats.h(22,36): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
   (compiling source file 'main.cpp')
   
-C:\GameSDL2\main.cpp(155,16): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\GameSDL2\main.cpp(201,28): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
-C:\GameSDL2\main.cpp(205,13): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\GameSDL2\main.cpp(206,13): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\GameSDL2\main.cpp(224,31): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
-C:\GameSDL2\main.cpp(269,41): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
-C:\GameSDL2\main.cpp(390,62): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
-C:\GameSDL2\main.cpp(390,42): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
-C:\GameSDL2\main.cpp(434,21): warning C4018: '<': signed/unsigned mismatch
-C:\GameSDL2\main.cpp(437,13): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\GameSDL2\main.cpp(451,26): warning C4018: '<': signed/unsigned mismatch
-C:\GameSDL2\main.cpp(498,21): warning C4018: '<': signed/unsigned mismatch
-C:\GameSDL2\main.cpp(503,23): warning C4018: '<': signed/unsigned mismatch
-C:\GameSDL2\main.cpp(523,19): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\GameSDL2\main.cpp(524,19): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\GameSDL2\main.cpp(543,21): warning C4018: '<': signed/unsigned mismatch
-C:\GameSDL2\main.cpp(546,13): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\GameSDL2\main.cpp(558,25): warning C4018: '<': signed/unsigned mismatch
-C:\GameSDL2\main.cpp(602,21): warning C4018: '<': signed/unsigned mismatch
-C:\GameSDL2\main.cpp(607,23): warning C4018: '<': signed/unsigned mismatch
-C:\GameSDL2\main.cpp(627,19): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\GameSDL2\main.cpp(628,19): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\GameSDL2\main.cpp(679,53): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\GameSDL2\main.cpp(686,54): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\GameSDL2\main.cpp(692,22): warning C4018: '<': signed/unsigned mismatch
-C:\GameSDL2\main.cpp(705,26): warning C4018: '<': signed/unsigned mismatch
-C:\GameSDL2\main.cpp(753,22): warning C4018: '<': signed/unsigned mismatch
-C:\GameSDL2\main.cpp(758,24): warning C4018: '<': signed/unsigned mismatch
-C:\GameSDL2\main.cpp(777,20): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\GameSDL2\main.cpp(778,20): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\GameSDL2\main.cpp(876,57): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\GameSDL2\main.cpp(921,21): warning C4018: '<': signed/unsigned mismatch
+C:\GameSDL2\main.cpp(178,16): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\GameSDL2\main.cpp(224,28): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
+C:\GameSDL2\main.cpp(228,13): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\GameSDL2\main.cpp(229,13): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\GameSDL2\main.cpp(247,31): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
+C:\GameSDL2\main.cpp(284,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\GameSDL2\main.cpp(313,41): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
+C:\GameSDL2\main.cpp(426,54): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\GameSDL2\main.cpp(487,62): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
+C:\GameSDL2\main.cpp(487,42): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
+C:\GameSDL2\main.cpp(692,52): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\GameSDL2\main.cpp(717,21): warning C4018: '<': signed/unsigned mismatch
+C:\GameSDL2\main.cpp(720,13): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\GameSDL2\main.cpp(734,26): warning C4018: '<': signed/unsigned mismatch
+C:\GameSDL2\main.cpp(781,21): warning C4018: '<': signed/unsigned mismatch
+C:\GameSDL2\main.cpp(786,23): warning C4018: '<': signed/unsigned mismatch
+C:\GameSDL2\main.cpp(806,19): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\GameSDL2\main.cpp(807,19): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\GameSDL2\main.cpp(826,21): warning C4018: '<': signed/unsigned mismatch
+C:\GameSDL2\main.cpp(829,13): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\GameSDL2\main.cpp(841,25): warning C4018: '<': signed/unsigned mismatch
+C:\GameSDL2\main.cpp(885,21): warning C4018: '<': signed/unsigned mismatch
+C:\GameSDL2\main.cpp(890,23): warning C4018: '<': signed/unsigned mismatch
+C:\GameSDL2\main.cpp(910,19): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\GameSDL2\main.cpp(911,19): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\GameSDL2\main.cpp(962,53): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\GameSDL2\main.cpp(969,54): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\GameSDL2\main.cpp(975,22): warning C4018: '<': signed/unsigned mismatch
+C:\GameSDL2\main.cpp(988,26): warning C4018: '<': signed/unsigned mismatch
+C:\GameSDL2\main.cpp(1036,22): warning C4018: '<': signed/unsigned mismatch
+C:\GameSDL2\main.cpp(1041,24): warning C4018: '<': signed/unsigned mismatch
+C:\GameSDL2\main.cpp(1064,21): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\GameSDL2\main.cpp(1065,21): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\GameSDL2\main.cpp(1157,58): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\GameSDL2\main.cpp(1207,21): warning C4018: '<': signed/unsigned mismatch
   Generating Code...
   GameSDL2.vcxproj -> C:\GameSDL2\Debug\GameSDL2.exe

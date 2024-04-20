@@ -14,6 +14,7 @@ public :
 	void AddPos(const int& xPos); 
 	void Show(SDL_Renderer* screen); 
 	void Init(SDL_Renderer* screen); 
+	int getnumber() { return number_; }
 
 
 	void InitCrease(); 

@@ -19,6 +19,8 @@ static SDL_Surface* g_image_menu = NULL;
 
 static Mix_Chunk* g_sound_bullet[2]; 
 static Mix_Chunk* g_sound_exp[2]; 
+static Mix_Chunk* get_coin[1]; 
+static Mix_Chunk* hitted[1]; 
 
 const int SCREEN_WIDTH = 1280; 
 const int SCREEN_HEIGHT = 640; 
@@ -43,9 +45,10 @@ const int FPS = 40;
 #define STATE_MONEY 4 
 
 #define LUCKKY_BOX 10
-#define TRAP 11
+#define TRAP 12
 #define TRAP2 13
-#define HEART 12 
+#define HEART 11 
+#define MONEY 14 
 
 typedef struct Input
 {

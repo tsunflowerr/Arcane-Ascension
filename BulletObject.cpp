@@ -23,9 +23,13 @@ bool BulletObject::LoadImgBullet(SDL_Renderer* des)
 		ret = LoadImg("img/laze.png", des);
 
 	}
-	else
+	else if(bullet_type_ = SEPHERE_BULLET )
 	{
 		ret = LoadImg("img/dark_fire_ball.png", des);
+	}
+	else
+	{
+		ret = LoadImg("img/fireball.png", des); 
 	}
 	return ret; 
 }

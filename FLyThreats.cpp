@@ -258,7 +258,7 @@ void FlyThreats::InitBullet(BulletObject* p_bullet, SDL_Renderer* screen)
 	if (p_bullet != NULL)
 	{
 
-		p_bullet->set_bullet_type(BulletObject::LASER_BULLET);
+		p_bullet->set_bullet_type(BulletObject::FIRE_BALL_BULLET );
 		bool ret = p_bullet->LoadImgBullet(screen);
 		if (ret)
 		{
