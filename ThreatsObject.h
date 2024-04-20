@@ -9,7 +9,8 @@
 #define THREAT_FRAME_NUM 8 
 #define THREAT_GRAVITY_SPEED 0.8
 #define THREAT_MAX_FALL_SPEED 10 
-#define THREAT_SPEED 5
+#define THREAT_SPEED 6
+#define THREAT_JUMP 10
 
 class ThreatsObject : public BaseObject
 {

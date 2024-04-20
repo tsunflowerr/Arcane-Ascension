@@ -20,6 +20,7 @@ BaseObject menu_background;
 BaseObject l_background;
 BaseObject w_background;
 TTF_Font* font_time = NULL; 
+TTF_Font* font_menu = NULL; 
 
 
 
@@ -67,6 +68,11 @@ bool InitData()
 		{
 			success = false;
 		}
+		font_menu = TTF_OpenFont("font//menufont.ttf", 45);
+		if (font_menu == NULL)
+		{
+			success = false;
+		}
 	}
 
 	if (Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 4096) == -1)
@@ -88,7 +94,7 @@ bool InitData()
 
 bool LoadBackground()
 {
-	bool ret = g_background.LoadImg("img//backgrou	nd.png", g_screen); 
+	bool ret = g_background.LoadImg("img//background.png", g_screen); 
 	if (ret == false)
 		return false; 
 	return true; 
@@ -221,7 +227,7 @@ std::vector<ThreatsObject*> MakeThreatList()
 			p_threat->LoadImg("img//threat_left.png", g_screen); 
 			p_threat->set_clips(); 
 			p_threat->set_type_move(ThreatsObject::MOVE_IN_SPACE_THREAT); 
-			p_threat->set_x_pos(500 + i * 550); 
+			p_threat->set_x_pos(1000 + i * 700); 
 			p_threat->set_y_pos(200);
 
 
@@ -374,7 +380,7 @@ int main(int argc, char* argv[])
 		guide_button.SetText("HIGH SCORE");
 		quit_button.SetText("QUIT");
 
-		start_button.LoadFromRenderText(font_time, g_screen);
+		start_button.LoadFromRenderText(font_menu, g_screen);
 		if (mouseX >= 1280 / 2 - 40 && mouseX <= 1280 / 2 - 40 + 90 && mouseY >= 480 -80  - 15 && mouseY <= 480 -80  + 37 - 15) {
 			start_button.SetColor(TextObject::BLACK_TEXT);
 			if (g_event.type == SDL_MOUSEBUTTONDOWN) {
@@ -390,7 +396,7 @@ int main(int argc, char* argv[])
 
 		start_button.RenderText(g_screen, 1280 / 2 - 40, 480 - 80  );
 
-		guide_button.LoadFromRenderText(font_time, g_screen);
+		guide_button.LoadFromRenderText(font_menu, g_screen);
 		if (mouseX >= 1280 / 2 - 40 && mouseX <= 1280 / 2 - 40 + 90 && mouseY >= 480 - 80 - 15 + 50 && mouseY <= 480 - 80  + 37 - 15 + 50) {
 			guide_button.SetColor(TextObject::BLACK_TEXT);
 			if (g_event.type == SDL_MOUSEBUTTONDOWN) {
@@ -422,10 +428,10 @@ int main(int argc, char* argv[])
 						strhs += maxhighscore;
 
 						highscoreval.SetText(strhs);
-						highscoreval.LoadFromRenderText(font_time, g_screen);
+						highscoreval.LoadFromRenderText(font_menu, g_screen);
 						highscoreval.RenderText(g_screen, SCREEN_WIDTH * 0.5, SCREEN_HEIGHT / 2);
 
-						quit_button.LoadFromRenderText(font_time, g_screen);
+						quit_button.LoadFromRenderText(font_menu, g_screen);
 						if (mouseX >= 1280 / 2 - 40 && mouseX <= 1280 / 2 - 40 + 90 && mouseY >= 480 / 2 - 15 + 120 && mouseY <= 480 / 2 + 37 - 15 + 120) {
 							quit_button.SetColor(TextObject::BLACK_TEXT);
 							if (g_event.type == SDL_MOUSEBUTTONDOWN) {
@@ -453,7 +459,7 @@ int main(int argc, char* argv[])
 		}
 		guide_button.RenderText(g_screen, 1280 / 2 - 40 , 480 - 80 + 40 );
 
-		quit_button.LoadFromRenderText(font_time, g_screen);
+		quit_button.LoadFromRenderText(font_menu, g_screen);
 		if (mouseX >= 1280 / 2 - 40 && mouseX <= 1280 / 2 - 40 + 90 && mouseY >= 480  - 15  && mouseY <= 480  + 45 - 15 ) {
 			quit_button.SetColor(TextObject::BLACK_TEXT);
 			if (g_event.type == SDL_MOUSEBUTTONDOWN) {
@@ -552,7 +558,7 @@ int main(int argc, char* argv[])
 			continuee.SetText("CONTINUE");
 			quit_button.SetText("QUIT");
 
-			continuee.LoadFromRenderText(font_time, g_screen);
+			continuee.LoadFromRenderText(font_menu, g_screen);
 			if (mouseX >= 1280 / 2 - 40 && mouseX <= 1280 / 2 - 40 + 90 && mouseY >= 480 - 80 - 15 && mouseY <= 480 - 80 + 37 - 15) {
 				continuee.SetColor(TextObject::BLACK_TEXT);
 				if (g_event.type == SDL_MOUSEBUTTONDOWN) {
@@ -567,7 +573,7 @@ int main(int argc, char* argv[])
 			}
 
 			continuee.RenderText(g_screen, 1280 / 2 - 40, 480 - 80);
-			quit_button.LoadFromRenderText(font_time, g_screen);
+			quit_button.LoadFromRenderText(font_menu, g_screen);
 			if (mouseX >= 1280 / 2 - 40 && mouseX <= 1280 / 2 - 40 + 90 && mouseY >= 480 - 15 && mouseY <= 480 + 45 - 15) {
 				quit_button.SetColor(TextObject::BLACK_TEXT);
 				if (g_event.type == SDL_MOUSEBUTTONDOWN) {
@@ -626,7 +632,7 @@ int main(int argc, char* argv[])
 				SDL_GetMouseState(&mouseX, &mouseY);
 				quit_button.SetText("QUIT");
 				highscore.SetText("High Score");
-				highscore.LoadFromRenderText(font_time, g_screen);
+				highscore.LoadFromRenderText(font_menu, g_screen);
 				if (mouseX >= 1280 / 2 - 40 && mouseX <= 1280 / 2 - 40 + 90 && mouseY >= 480 - 15 && mouseY <= 480  + 37 - 15) {
 					highscore.SetColor(TextObject::BLACK_TEXT);
 					if (g_event.type == SDL_MOUSEBUTTONDOWN) {
@@ -643,7 +649,7 @@ int main(int argc, char* argv[])
 
 				highscore.RenderText(g_screen, 1280 / 2 - 40, 480 );
 
-				quit_button.LoadFromRenderText(font_time, g_screen);
+				quit_button.LoadFromRenderText(font_menu, g_screen);
 				if (mouseX >= 1280 / 2 - 40 && mouseX <= 1280 / 2 - 40 + 90 && mouseY >= 480  - 15 + 30 && mouseY <= 480  + 37 - 15 + 30) {
 					quit_button.SetColor(TextObject::BLACK_TEXT);
 					if (g_event.type == SDL_MOUSEBUTTONDOWN) {
@@ -688,10 +694,10 @@ int main(int argc, char* argv[])
 				strhs += maxhighscore;
 
 				highscoreval.SetText(strhs);
-				highscoreval.LoadFromRenderText(font_time, g_screen);
+				highscoreval.LoadFromRenderText(font_menu, g_screen);
 				highscoreval.RenderText(g_screen, SCREEN_WIDTH * 0.5, SCREEN_HEIGHT / 2);
 
-				quit_button.LoadFromRenderText(font_time, g_screen);
+				quit_button.LoadFromRenderText(font_menu, g_screen);
 				if (mouseX >= 1280 / 2 - 40 && mouseX <= 1280 / 2 - 40 + 90 && mouseY >= 480 / 2 - 15 + 120 && mouseY <= 480 / 2 + 37 - 15 + 120) {
 					quit_button.SetColor(TextObject::BLACK_TEXT);
 					if (g_event.type == SDL_MOUSEBUTTONDOWN) {
@@ -1091,7 +1097,7 @@ int main(int argc, char* argv[])
 										SDL_GetMouseState(&mouseX, &mouseY);
 										quit_button.SetText("QUIT");
 										highscore.SetText("High Score");
-										highscore.LoadFromRenderText(font_time, g_screen);
+										highscore.LoadFromRenderText(font_menu, g_screen);
 										if (mouseX >= 1280 / 2 - 40 && mouseX <= 1280 / 2 - 40 + 90 && mouseY >= 480 / 2 - 15 && mouseY <= 480 / 2 + 37 - 15) {
 											highscore.SetColor(TextObject::BLACK_TEXT);
 											if (g_event.type == SDL_MOUSEBUTTONDOWN) {
@@ -1108,7 +1114,7 @@ int main(int argc, char* argv[])
 
 										highscore.RenderText(g_screen, 1280 / 2 - 40, 480 / 2);
 
-										quit_button.LoadFromRenderText(font_time, g_screen);
+										quit_button.LoadFromRenderText(font_menu, g_screen);
 										if (mouseX >= 1280 / 2 - 40 && mouseX <= 1280 / 2 - 40 + 90 && mouseY >= 480 / 2 - 15 + 120 && mouseY <= 480 / 2 + 37 - 15 + 120) {
 											quit_button.SetColor(TextObject::BLACK_TEXT);
 											if (g_event.type == SDL_MOUSEBUTTONDOWN) {
@@ -1153,10 +1159,10 @@ int main(int argc, char* argv[])
 										strhs += maxhighscore;
 
 										highscoreval.SetText(strhs);
-										highscoreval.LoadFromRenderText(font_time, g_screen);
+										highscoreval.LoadFromRenderText(font_menu, g_screen);
 										highscoreval.RenderText(g_screen, SCREEN_WIDTH * 0.5, SCREEN_HEIGHT / 2);
 
-										quit_button.LoadFromRenderText(font_time, g_screen);
+										quit_button.LoadFromRenderText(font_menu, g_screen);
 										if (mouseX >= 1280 / 2 - 40 && mouseX <= 1280 / 2 - 40 + 90 && mouseY >= 480 / 2 - 15 + 120 && mouseY <= 480 / 2 + 37 - 15 + 120) {
 											quit_button.SetColor(TextObject::BLACK_TEXT);
 											if (g_event.type == SDL_MOUSEBUTTONDOWN) {

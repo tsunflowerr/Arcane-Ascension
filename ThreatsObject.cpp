@@ -205,7 +205,7 @@ void ThreatsObject::CheckToMap(Map& map_data )
 		{
 			int val1 = map_data.tile[y1][x2];
 			int val2 = map_data.tile[y2][x2];
-			if ( ( val1 != BLANK_TILE  && val1 != STATE_MONEY ) || (  val2 != BLANK_TILE && val2!= STATE_MONEY ) ) 
+			if ( ( val1 != BLANK_TILE  && val1 != STATE_MONEY && val1 != TRAP2 && val1 != TRAP && val1 != HEART  ) || (  val2 != BLANK_TILE && val2!= STATE_MONEY && val2 != TRAP && val2 != TRAP2 && val2 != HEART  ) ) 
 			{
 				x_pos_ = x2 * TILE_SIZE;
 				x_pos_ -= width_frame_ + 1;
@@ -216,7 +216,7 @@ void ThreatsObject::CheckToMap(Map& map_data )
 		{
 			int val1 = map_data.tile[y1][x1];
 			int val2 = map_data.tile[y2][x1];
-			if ( (val1 != BLANK_TILE && val1 != STATE_MONEY ) || (val2 != BLANK_TILE && val2 != STATE_MONEY) )
+			if ( (val1 != BLANK_TILE && val1 != STATE_MONEY && val1 != TRAP2 && val1 != TRAP && val1 != HEART) || (val2 != BLANK_TILE && val2 != STATE_MONEY && val2 != TRAP && val2 != TRAP2 && val2 != HEART) )
 			{
 				x_pos_ = (x1 + 1) * TILE_SIZE;
 				x_val_ = 0;
@@ -237,7 +237,7 @@ void ThreatsObject::CheckToMap(Map& map_data )
 		{
 			int val1 = map_data.tile[y2][x1];
 			int val2 = map_data.tile[y2][x2];
-			if ( (val1 != BLANK_TILE && val1 != STATE_MONEY ) || ( val2 != BLANK_TILE && val2 != STATE_MONEY ) )
+			if ( (val1 != BLANK_TILE && val1 != STATE_MONEY && val1 != TRAP2 && val1 != TRAP && val1 != HEART) || (val2 != BLANK_TILE && val2 != STATE_MONEY && val2 != TRAP && val2 != TRAP2 && val2 != HEART) )
 			{
 				y_pos_ = y2 * TILE_SIZE;
 				y_pos_ -= (height_frame_ + 1);
@@ -249,7 +249,7 @@ void ThreatsObject::CheckToMap(Map& map_data )
 		{
 			int val1 = map_data.tile[y1][x1];
 			int val2 = map_data.tile[y1][x2];
-			if ( (val1 != BLANK_TILE && val1 != STATE_MONEY  ) || ( val2 != BLANK_TILE && val2 != STATE_MONEY ) )
+			if ( (val1 != BLANK_TILE && val1 != STATE_MONEY && val1 != TRAP2 && val1 != TRAP && val1 != HEART) || (val2 != BLANK_TILE && val2 != STATE_MONEY && val2 != TRAP && val2 != TRAP2 && val2 != HEART) )
 			{
 				y_pos_ = (y1 + 1) * TILE_SIZE;
 				y_val_ = 0;
