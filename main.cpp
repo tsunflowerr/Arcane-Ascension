@@ -13,6 +13,7 @@
 #include "FLyThreats.h"
 #include <fstream>
 #include <SDL_mixer.h>
+#include <iostream>
 
 BaseObject g_background; 
 BaseObject m_background; 
@@ -297,6 +298,9 @@ int main(int argc, char* argv[])
 	Mix_PlayMusic(g_music, -1);
 
 	int hpboss = 20; 
+	int dame_attack = 1; 
+	int hpthreats = 1;
+	int hpflythreats = 2; 
 
 	GameMap game_map;
 	game_map.LoadMap("map/map01.dat");
@@ -317,6 +321,25 @@ int main(int argc, char* argv[])
 	PlayerMoney player_money;
 	player_money.Init(g_screen);
 	player_money.SetPos(SCREEN_WIDTH * 0.5 - 280, 8);
+
+	/*Iteam1 iteam1; 
+	iteam1.Init(g_screen); 
+	iteam1.SetPos(SCREEN_WIDTH -210, 8);*/
+
+	Iteam2 iteam2;
+	iteam2.Init(g_screen);
+	iteam2.SetPos(SCREEN_WIDTH -160 , 110); 
+
+	Iteam3 iteam3;
+	iteam3.Init(g_screen);
+	iteam3.SetPos(SCREEN_WIDTH -160 , 78);
+
+	Iteam4 iteam4;
+	iteam4.Init(g_screen);
+	iteam4.SetPos(SCREEN_WIDTH -160 , 48);
+
+
+
 
 
 	std::vector<ThreatsObject*> threats_list = MakeThreatList();
@@ -341,6 +364,18 @@ int main(int argc, char* argv[])
 
 	TextObject money_game;
 	money_game.SetColor(TextObject::BLACK_TEXT);
+
+	TextObject iteam_game1; 
+	iteam_game1.SetColor(TextObject::WHITE_TEXT);
+
+	TextObject iteam_game2;
+	iteam_game1.SetColor(TextObject::WHITE_TEXT);
+
+	TextObject iteam_game3;
+	iteam_game1.SetColor(TextObject::WHITE_TEXT);
+
+	TextObject iteam_game4;
+	iteam_game1.SetColor(TextObject::WHITE_TEXT);
 
 	TextObject start_button;
 	TextObject quit_button;
@@ -505,14 +540,21 @@ int main(int argc, char* argv[])
 
 
 
+
 		attack_player.SetMapXY(map_data.start_x_, map_data.start_y_);
 		attack_player.Show(g_screen);
 
 
 		game_map.SetMap(map_data);
 		game_map.DrawMap(g_screen);
+
+
 		int x = p_player.getheart();
 		int y = p_player.gettrap(); 
+		/*int z = p_player.getdef();*/
+		int t = p_player.getstr(); 
+		int k = p_player.getjump(); 
+		int m = p_player.getrun(); 
 
 		if (x == 1)
 		{
@@ -527,6 +569,64 @@ int main(int argc, char* argv[])
 			player_power.Decrease(); 
 
 		}
+		UINT32 currentTime = SDL_GetTicks() / 1000; 
+			
+		if (currentTime - (p_player.gett1() / 1000) <= 015 && p_player.gett1() / 1000 != 0)
+		{
+
+			Uint32 time_effect = 15 - (currentTime - (p_player.gett1() / 1000));
+			if (time_effect >= 0)
+			{
+				dame_attack = 2;
+				std::string time_iteam = std::to_string(time_effect);
+				std::string time1("");
+				time1 += time_iteam;
+				iteam_game2.SetText(time1);
+				iteam_game2.LoadFromRenderText(font_time, g_screen);
+				iteam_game2.RenderText(g_screen, SCREEN_WIDTH - 120, 120);
+				iteam2.Show(g_screen);
+			}
+			else
+			{
+				dame_attack = 1;
+			}
+		}
+			if ( currentTime - (p_player.gett2() / 1000) <= 15  && p_player.gett2() /1000 != 0  ) 
+			{
+					Uint32 time_effect = 15 - (currentTime - (p_player.gett2()/ 1000));
+					if (time_effect >= 0)
+					{
+						p_player.setjump(20);
+						std::string time_iteam = std::to_string(time_effect);
+						std::string time1("");
+						time1 += time_iteam;
+						iteam_game3.SetText(time1);
+						iteam_game3.LoadFromRenderText(font_time, g_screen);
+						iteam_game3.RenderText(g_screen, SCREEN_WIDTH - 120, 90);
+						iteam3.Show(g_screen);
+					}
+					else  {
+						p_player.setjump(15);
+					}
+			}
+			if ( currentTime - (p_player.gett3() / 1000) <= 15 && p_player.gett3() / 1000  != 0 )
+			{
+				Uint32 time_effect = 15 - (currentTime - p_player.gett3() / 1000);
+				if (time_effect > 0)
+				{
+					p_player.setrun(12);
+					std::string time_iteam = std::to_string(time_effect);
+					std::string time1("");
+					time1 += time_iteam;
+					iteam_game4.SetText(time1);
+					iteam_game4.LoadFromRenderText(font_time, g_screen);
+					iteam_game4.RenderText(g_screen, SCREEN_WIDTH - 120, 60);
+					iteam4.Show(g_screen);
+				}
+				else {
+					p_player.setrun(8);
+				}
+			}
 
 		if (g_event.type == SDL_KEYDOWN )
 		{
@@ -754,6 +854,28 @@ int main(int argc, char* argv[])
 					bool bCol2 = SDLCommonFunc::CheckCollision(rect_player, rect_threat);
 					if (bCol2 || bCol1)
 					{
+						/*if (z == 1)
+						{
+							Uint32 time = SDL_GetTicks() / 1000;
+							Uint32 time_effect = 15 - time;
+							if (time_effect > 0)
+							{
+								p_player.setjump(20);
+								std::string time_iteam = std::to_string(time_effect);
+								std::string time1("");
+								time1 += time_iteam;
+								iteam_game1.SetText(time1);
+								iteam_game1.LoadFromRenderText(font_time, g_screen);
+								iteam_game1.RenderText(g_screen, SCREEN_WIDTH * 0.5 - 150, 15);
+								iteam1.Show(g_screen);
+
+							}
+							else
+							{
+								
+							}
+
+						}*/
 						if ( player_power.getnumber() > 0 )
 						{
 							p_player.SetRect(0, 0);
@@ -791,6 +913,7 @@ int main(int argc, char* argv[])
 			{
 				for (int t = 0; t < threats_list.size(); t++)
 				{
+					
 					ThreatsObject* obj_threat = threats_list.at(t);
 					if (obj_threat != NULL)
 					{
@@ -803,10 +926,9 @@ int main(int argc, char* argv[])
 						SDL_Rect bRect = p_bullet->GetRect();
 
 						bool bCol = SDLCommonFunc::CheckCollision(bRect, tRect);
-
 						if (bCol)
 						{
-							mark_value++;
+							hpthreats = hpthreats - dame_attack; 
 							for (int ex = 0; ex < 8; ex++)
 							{
 								int x_pos = p_bullet->GetRect().x - frame_exp_width * 0.5;
@@ -815,12 +937,16 @@ int main(int argc, char* argv[])
 								exp_threat.set_frame(ex);
 								exp_threat.SetRect(x_pos, y_pos);
 								exp_threat.Show(g_screen);
+								p_player.RemoveBullet(r);
 							}
-
-							p_player.RemoveBullet(r);
+						}
+						if (hpthreats <= 0)
+						{
+							mark_value++; 
 							obj_threat->Free();
 							threats_list.erase(threats_list.begin() + t);
-							Mix_PlayChannel(-1, g_sound_exp[0], 0); 
+							Mix_PlayChannel(-1, g_sound_exp[0], 0);
+							hpthreats = 1; 
 
 						}
 					}
@@ -910,6 +1036,11 @@ int main(int argc, char* argv[])
 
 						if (bCol)
 						{
+							hpflythreats = hpflythreats - dame_attack; 
+							p_player.RemoveBullet(r);
+						}
+						if (hpflythreats <= 0)
+						{
 							mark_value++;
 							for (int ex = 0; ex < 8; ex++)
 							{
@@ -921,11 +1052,9 @@ int main(int argc, char* argv[])
 								exp_threat.Show(g_screen);
 							}
 
-							p_player.RemoveBullet(r);
 							obj_threat->Free();
 							fly_threats.erase(fly_threats.begin() + t);
 							Mix_PlayChannel(-1, g_sound_exp[0], 0);
-
 						}
 					}
 				}

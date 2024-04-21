@@ -78,3 +78,93 @@ void PlayerMoney::Show(SDL_Renderer* screen)
 	rect_.y = y_pos_; 
 	Render(screen); 
 }
+
+Iteam1::Iteam1()
+{
+	x_pos_ = 0;
+	y_pos_ = 0;
+}
+Iteam1::~Iteam1()
+{
+
+}
+
+void Iteam1::Init(SDL_Renderer* screen)
+{
+	bool ret = LoadImg("img//def.png", screen);
+}
+
+void Iteam1::Show(SDL_Renderer* screen)
+{
+	rect_.x = x_pos_;
+	rect_.y = y_pos_;
+	Render(screen);
+}
+
+Iteam2::Iteam2()
+{
+	x_pos_ = 0;
+	y_pos_ = 0;
+}
+Iteam2::~Iteam2()
+{
+
+}
+
+void Iteam2::Init(SDL_Renderer* screen)
+{
+	bool ret = LoadImg("img//str.png", screen);
+}
+
+void Iteam2::Show(SDL_Renderer* screen)
+{
+	rect_.x = x_pos_;
+	rect_.y = y_pos_;
+	Render(screen);
+}
+
+Iteam3::Iteam3()
+{
+	x_pos_ = 0;
+	y_pos_ = 0;
+}
+Iteam3::~Iteam3()
+{
+
+}
+
+void Iteam3::Init(SDL_Renderer* screen)
+{
+	bool ret = LoadImg("img//jp.png", screen);
+}
+
+void Iteam3::Show(SDL_Renderer* screen)
+{
+	rect_.x = x_pos_;
+	rect_.y = y_pos_;
+	Render(screen);
+
+}
+
+Iteam4::Iteam4()
+{
+	x_pos_ = 0;
+	y_pos_ = 0;
+}
+Iteam4::~Iteam4()
+{
+
+}
+
+void Iteam4::Init(SDL_Renderer* screen)
+{
+	bool ret = LoadImg("img//runn.png", screen);
+}
+
+void Iteam4::Show(SDL_Renderer* screen)
+{
+	rect_.x = x_pos_;
+	rect_.y = y_pos_;
+	Render(screen);
+}
+

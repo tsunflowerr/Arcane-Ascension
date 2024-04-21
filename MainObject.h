@@ -10,8 +10,6 @@
 
 #define GRAVITY_SPEED 0.8 
 #define MAX_FALL_SPEED 10 
-#define PLAYER_SPEED 8
-#define PLAYER_JUMP_VALUE 20
 
 class MainObject : public BaseObject
 {
@@ -58,8 +56,21 @@ public :
 	float getypos() { return y_pos_;  }
 	int getheart() { return checkheart; }
 	int gettrap() { return checktrap;  }
+	int getdef() { return checkdef;  }
+	int getstr() { return checkstr;  }
+	int getjump() { return checkjump;  }
+	int getrun() { return checkrun;  }
 	int checkfall() { return fall;  }
-
+	void setjump(const int& newjump) { jump = newjump;  }
+	void setrun(const int& newrun) { runspeed = newrun;  }
+	void setdef(const int& x) { checkdef = x;  }
+	void setstr(const int& y) { checkstr = y;  }
+	void setjump2(const int& z) { checkjump = z;  }
+	void setrun2(const int& t) { checkrun = t; }
+	int gett1() { return t1;  }
+	int gett2() { return t2;  }
+	int gett3() { return t3;  }
+ 
 private:
 
 	int money_count; 
@@ -94,7 +105,20 @@ private:
 	int come_back_time_; 
 	int checkheart; 
 	int checktrap; 
+	int checkdef; 
+	int checkstr; 
+	int checkjump; 
+	int checkrun; 
+
+
 	int fall; 
+
+	int jump ;
+	int runspeed; 
+
+	UINT32 t1; 
+	UINT32 t2; 
+	UINT32 t3; 
 
 };
 

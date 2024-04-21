@@ -29,7 +29,16 @@ MainObject::MainObject()
 	delay_attack = 0; 
 	checkheart = 0; 
 	checktrap = 0; 
+	checkdef = 0; 
+	checkstr = 0; 
+	checkjump = 0; 
+	checkrun = 0; 
 	fall = 0;
+	jump = 15; 
+	runspeed = 8; 
+	t1 = 0; 
+	t2 = 0; 
+	t3 = 0; 
 	
 }
 
@@ -117,6 +126,10 @@ void MainObject::CheckToMap(Map& map_data)
 	int y2 = 0;
 	checkheart = 0; 
 	checktrap = 0; 
+	checkdef = 0; 
+	checkstr = 0; 
+	checkrun = 0; 
+	checkjump = 0; 
 
 	int height_min = height_frame_ < TILE_SIZE ? height_frame_ : TILE_SIZE;
 
@@ -188,15 +201,38 @@ void MainObject::CheckToMap(Map& map_data)
 			{
 				map_data.tile[y1][x2] = 0;
 				map_data.tile[y2][x2] = 0;
-				checkheart = 1;
+				checkheart = 1; 
 				
 			}
-			else if ((val1 == MONEY) || (val2 == MONEY ))
+			else if ((val1 == DEF ) || (val2 == DEF ))
 			{
 				map_data.tile[y1][x2] = 0;
 				map_data.tile[y2][x2] = 0;
-				IncreaseMoney(); 
+				checkdef = 1;
 
+			}
+			else if ((val1 == STRENGTH ) || (val2 == STRENGTH))
+			{
+				map_data.tile[y1][x2] = 0;
+				map_data.tile[y2][x2] = 0;
+				checkstr = 1;
+				t1 = SDL_GetTicks(); 
+
+			}
+			else if ((val1 == JUMP ) || (val2 == JUMP ))
+			{
+				map_data.tile[y1][x2] = 0;
+				map_data.tile[y2][x2] = 0;
+				checkjump  = 1;
+				t2 = SDL_GetTicks(); 
+
+			}
+			else if ((val1 == RUN ) || (val2 == RUN ))
+			{
+				map_data.tile[y1][x2] = 0;
+				map_data.tile[y2][x2] = 0;
+				checkrun = 1;
+				t3 = SDL_GetTicks(); 
 			}
 			else
 			{
@@ -253,7 +289,6 @@ void MainObject::CheckToMap(Map& map_data)
 				map_data.tile[y1][x1] = 0;
 				map_data.tile[y2][x1] = 0;
 				checktrap = 1;
-
 			}
 			else if (val1 == TRAP2 || (val2 == TRAP2))
 			{
@@ -269,11 +304,34 @@ void MainObject::CheckToMap(Map& map_data)
 				checkheart = 1;
 
 			}
-			else if (val1 == MONEY || (val2 == MONEY ))
+			else if (val1 == DEF || (val2 == DEF))
 			{
 				map_data.tile[y1][x1] = 0;
 				map_data.tile[y2][x1] = 0;
-				IncreaseMoney(); 
+				checkdef = 1;
+
+			}
+			else if (val1 == STRENGTH || (val2 == STRENGTH))
+			{
+				map_data.tile[y1][x1] = 0;
+				map_data.tile[y2][x1] = 0;
+				checkstr = 1;
+				t1 = SDL_GetTicks(); 
+			}
+			else if (val1 == JUMP || (val2 == JUMP ))
+			{
+				map_data.tile[y1][x1] = 0;
+				map_data.tile[y2][x1] = 0;
+				checkjump = 1;
+				t2 = SDL_GetTicks(); 
+
+			}
+			else if (val1 == RUN || (val2 == RUN ))
+			{
+				map_data.tile[y1][x1] = 0;
+				map_data.tile[y2][x1] = 0;
+				checkrun = 1;
+				t3 = SDL_GetTicks(); 
 
 			}
 			else
@@ -366,11 +424,32 @@ void MainObject::CheckToMap(Map& map_data)
 				map_data.tile[y2][x2] = 0;
 				checkheart = 1;
 			}
-			else if (val1 == MONEY || val2 == MONEY )
+			else if (val1 == DEF || val2 == DEF )
 			{
 				map_data.tile[y2][x1] = 0;
 				map_data.tile[y2][x2] = 0;
-				IncreaseMoney(); 
+				checkdef = 1;
+			}
+			else if (val1 == STRENGTH || val2 == STRENGTH )
+			{
+				map_data.tile[y2][x1] = 0;
+				map_data.tile[y2][x2] = 0;
+				checkstr = 1;
+				t1 = SDL_GetTicks(); 
+			}
+			else if (val1 == JUMP  || val2 == JUMP )
+			{
+				map_data.tile[y2][x1] = 0;
+				map_data.tile[y2][x2] = 0;
+				checkjump = 1;
+				t2 = SDL_GetTicks(); 
+			}
+			else if (val1 == RUN || val2 == RUN )
+			{
+				map_data.tile[y2][x1] = 0;
+				map_data.tile[y2][x2] = 0;
+				checkrun = 1;
+				t3 = SDL_GetTicks(); 
 			}
 			else
 			{
@@ -396,20 +475,20 @@ void MainObject::CheckToMap(Map& map_data)
 			{
 				map_data.tile[y1][x1] = 0;
 				map_data.tile[y1][x2] = 0;
-				IncreaseMoney(); 
+				IncreaseMoney();
 			}
 			else if ((val1 == LUCKKY_BOX))
 			{
-				if (luckky_box != 0){
-					luckky_box--; 
+				if (luckky_box != 0) {
+					luckky_box--;
 					y_pos_ = (y1 + 1) * TILE_SIZE;
 					y_val_ = 0;
 				}
-				else 
+				else
 				{
 					map_data.tile[y1][x1] = rand() % 4 + 11;
 				}
-				std::cout << luckky_box; 
+				std::cout << luckky_box;
 			}
 			else if ((val2 == LUCKKY_BOX))
 			{
@@ -424,7 +503,7 @@ void MainObject::CheckToMap(Map& map_data)
 				}
 				std::cout << luckky_box;
 			}
-			else if ( val1 == TRAP || val2 == TRAP )
+			else if (val1 == TRAP || val2 == TRAP)
 			{
 				map_data.tile[y1][x1] = 0;
 				map_data.tile[y1][x2] = 0;
@@ -436,18 +515,42 @@ void MainObject::CheckToMap(Map& map_data)
 				map_data.tile[y1][x2] = 0;
 				checktrap = 1;
 			}
-			else if (val1 == HEART || val2 == HEART )
+			else if (val1 == HEART || val2 == HEART)
 			{
 				map_data.tile[y1][x1] = 0;
 				map_data.tile[y1][x2] = 0;
 				checkheart = 1;
 			}
-			else if (val1 == MONEY || val2 == MONEY )
+			else if (val1 == DEF || val2 == DEF)
 			{
 				map_data.tile[y1][x1] = 0;
 				map_data.tile[y1][x2] = 0;
-				IncreaseMoney(); 
+				checkdef = 1;
 			}
+			else if (val1 == STRENGTH || val2 == STRENGTH)
+			{
+				map_data.tile[y1][x1] = 0;
+				map_data.tile[y1][x2] = 0;
+				checkstr = 1;
+				t1 = SDL_GetTicks();
+			}
+
+			else if (val1 == JUMP || val2 == JUMP)
+			{
+				map_data.tile[y1][x1] = 0;
+				map_data.tile[y1][x2] = 0;
+				checkjump = 1;
+				t2 = SDL_GetTicks(); 
+			}
+
+			else if (val1 == RUN || val2 == RUN )
+			{
+				map_data.tile[y1][x1] = 0;
+				map_data.tile[y1][x2] = 0;
+				checkrun = 1;
+				t3 = SDL_GetTicks();
+			}
+			
 			else
 			{
 				if (val1 != BLANK_TILE || val2 != BLANK_TILE)
@@ -477,6 +580,7 @@ void MainObject::CheckToMap(Map& map_data)
 
 		come_back_time_ = 10;
 	}
+	/*std::cout << t1 << "\n" << t2 / 1000 << "\n" << t3; */
 }
 
 void MainObject::Show(SDL_Renderer* des)
@@ -704,18 +808,18 @@ void MainObject::DoPlayer(Map& map_data)
 
 		if (input_type_.left_ == 1)
 		{
-			x_val_ -= PLAYER_SPEED;
+			x_val_ -= runspeed;
 		}
 		else if (input_type_.right_ == 1)
 		{
-			x_val_ += PLAYER_SPEED;
+			x_val_ += runspeed;
 		}
 
 		if (input_type_.jump_ == 1)
 		{
 			if (on_ground_ == true)
 			{
-				y_val_ = -PLAYER_JUMP_VALUE;
+				y_val_ = -jump;
 			}
 			on_ground_ = false;
 			input_type_.jump_ = 0;

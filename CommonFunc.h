@@ -48,7 +48,11 @@ const int FPS = 40;
 #define TRAP 12
 #define TRAP2 13
 #define HEART 11 
-#define MONEY 14 
+#define DEF 14 
+#define STRENGTH 15 
+#define JUMP 16 
+#define RUN 17 
+
 
 typedef struct Input
 {

@@ -40,4 +40,64 @@ private :
 	int y_pos_; 
 };
 
+class Iteam1 : public BaseObject
+{
+public:
+	Iteam1();
+	~Iteam1();
+
+	void Init(SDL_Renderer* screen);
+	void Show(SDL_Renderer* screen);
+	void SetPos(const int& x, const int& y) { x_pos_ = x, y_pos_ = y; }
+
+private:
+	int x_pos_;
+	int y_pos_;
+};
+class Iteam2 : public BaseObject
+{
+public:
+	Iteam2();
+	~Iteam2();
+
+	void Init(SDL_Renderer* screen);
+	void Show(SDL_Renderer* screen);
+	void SetPos(const int& x, const int& y) { x_pos_ = x, y_pos_ = y; }
+
+private:
+	int x_pos_;
+	int y_pos_;
+};
+
+class Iteam3 : public BaseObject
+{
+public:
+	Iteam3();
+	~Iteam3();
+
+	void Init(SDL_Renderer* screen);
+	void Show(SDL_Renderer* screen);
+	void SetPos(const int& x, const int& y) { x_pos_ = x, y_pos_ = y; }
+
+private:
+	int x_pos_;
+	int y_pos_;
+};
+
+class Iteam4 : public BaseObject
+{
+public:
+	Iteam4();
+	~Iteam4();
+
+	void Init(SDL_Renderer* screen);
+	void Show(SDL_Renderer* screen);
+	void SetPos(const int& x, const int& y) { x_pos_ = x, y_pos_ = y; }
+
+private:
+	int x_pos_;
+	int y_pos_;
+};
+
+
 #endif
